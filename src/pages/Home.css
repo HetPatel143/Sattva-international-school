@@ -282,12 +282,19 @@
 
 /* CTA Section */
 .cta-box {
-  padding: 5rem 2rem;
+  padding: 3rem 1.5rem;
   border-radius: var(--radius-xl);
-  min-height: 560px;
+  min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .cta-box {
+    padding: 5rem 2rem;
+    min-height: 560px;
+  }
 }
 
 .cta-bg-image {

@@ -69,14 +69,21 @@
 .tuition-side {
   flex: 1.2;
   background-color: white;
-  padding: 4rem 3rem;
+  padding: 2.5rem 1.5rem;
 }
 
 .aid-side {
   flex: 1;
   background-color: var(--color-primary);
   color: white;
-  padding: 4rem 3rem;
+  padding: 2.5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .tuition-side,
+  .aid-side {
+    padding: 4rem 3rem;
+  }
 }
 
 .finance-heading {
@@ -102,8 +109,10 @@
 
 .tuition-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
+  gap: 0.35rem 1rem;
   padding: 1.25rem 0;
   border-bottom: 1px solid var(--color-border);
 }
@@ -286,13 +295,19 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem;
+  padding: 2.5rem;
   color: white;
+}
+
+@media (min-width: 768px) {
+  .form-image-overlay {
+    padding: 4rem;
+  }
 }
 
 .overlay-quote {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 3vw + 0.5rem, 2rem);
   line-height: 1.4;
   font-weight: 400;
   font-style: italic;
@@ -312,10 +327,16 @@
 .form-content-side {
   flex: 1.2;
   background: white;
-  padding: 4rem 2rem;
+  padding: 2.5rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .form-content-side {
+    padding: 4rem 2rem;
+  }
 }
 
 .form-content-inner {
