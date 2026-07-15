@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, Trophy, Star, Quote, GraduationCap, Building, Award, FlaskConical, Languages } from 'lucide-react';
+import { BookOpen, Users, Trophy, Star, Quote, GraduationCap, Building, Award, FlaskConical, Languages, Palette, Landmark } from 'lucide-react';
 import './Home.css';
 
 const Home = () => {
@@ -19,28 +19,28 @@ const Home = () => {
     {
       icon: <Trophy className="feature-icon" />,
       title: "Holistic Development",
-      description: "Focus on sports, arts, and extracurriculars for all-round character building.",
+      description: "Dance, karate, yoga, and the arts alongside academics for all-round character building.",
       tile: "purple"
     },
     {
       icon: <Star className="feature-icon" />,
       title: "State-of-the-Art Facilities",
-      description: "Modern classrooms, labs, and sports complexes to enhance the learning experience.",
+      description: "Fully air-conditioned classrooms, science labs, and two auditoriums to enhance the learning experience.",
       tile: "blue"
     }
   ];
 
   const stats = [
     { value: "GSEB", label: "State Board Affiliated", icon: <Building /> },
-    { value: "100%", label: "College Success", icon: <GraduationCap /> },
-    { value: "50+", label: "Extracurricular Activities", icon: <Users /> },
+    { value: "7", label: "Skill Activities", icon: <Palette /> },
+    { value: "2", label: "Auditoriums", icon: <Landmark /> },
     { value: "15:1", label: "Student-Teacher Ratio", icon: <BookOpen /> }
   ];
 
   const curriculumHighlights = [
-    { icon: <GraduationCap />, title: "JrKG to Grade 12", desc: "A seamless academic journey from the earliest years through senior secondary.", tile: "red" },
+    { icon: <GraduationCap />, title: "JrKG to Std 12", desc: "A seamless academic journey from the earliest years through senior secondary.", tile: "red" },
     { icon: <Award />, title: "GSEB Curriculum", desc: "Recognized state board curriculum delivering strong academic foundations.", tile: "green" },
-    { icon: <FlaskConical />, title: "Science & Commerce", desc: "Specialized streams in Grades 11-12 to match every student's ambition.", tile: "purple" },
+    { icon: <FlaskConical />, title: "Science & Commerce", desc: "Specialized streams in Std 11-12 to match every student's ambition.", tile: "purple" },
     { icon: <Languages />, title: "English & Gujarati Medium", desc: "Choose the medium of instruction that feels most like home.", tile: "blue" }
   ];
 
@@ -48,19 +48,19 @@ const Home = () => {
     {
       quote: "SATTVA has completely transformed my child's approach to learning. The teachers genuinely care.",
       author: "Priya Sharma",
-      role: "Parent of Grade 9 Student",
+      role: "Parent of Std 9 Student",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150"
     },
     {
-      quote: "The robotics program and science facilities are unparalleled. It prepared me perfectly for university.",
+      quote: "The science labs and hands-on learning make every subject feel real. I've grown so much more confident here.",
       author: "Rahul Desai",
-      role: "Alumnus, Class of 2024",
+      role: "Std 10 Student",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150"
     },
     {
       quote: "An environment that not only demands academic rigor but also supports mental and emotional well-being.",
       author: "Dr. Ananya Gupta",
-      role: "Parent of Grade 12 Student",
+      role: "Parent of Std 12 Student",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150"
     }
   ];
@@ -146,6 +146,16 @@ const Home = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section className="section quote-section text-center">
+        <div className="container">
+          <blockquote className="legend-quote">
+            "Dream is not that which you see while sleeping, it is something that does not let you sleep."
+          </blockquote>
+          <p className="legend-quote-author">— Dr. A. P. J. Abdul Kalam</p>
         </div>
       </section>
 

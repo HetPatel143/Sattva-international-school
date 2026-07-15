@@ -564,3 +564,22 @@ select {
   margin: 0 auto;
 }
 
+/* Shared "legend quote" banner — used across multiple pages */
+.legend-quote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.5vw + 0.75rem, 1.75rem);
+  line-height: 1.5;
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  color: var(--color-primary);
+}
+
+.legend-quote-author {
+  font-weight: 600;
+  color: var(--color-secondary-dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+}
+

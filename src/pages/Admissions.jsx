@@ -45,9 +45,9 @@ const Admissions = () => {
       "Student Last Name": formData.lastName,
       "Parent Email": formData.email,
       "Phone Number": formData.phone,
-      "Applying for Grade": formData.grade === 'k' ? 'Kindergarten' : 
-                           formData.grade === 'primary' ? 'Primary (Grades 1-5)' :
-                           formData.grade === 'middle' ? 'Middle (Grades 6-8)' : 'High School (Grades 9-12)',
+      "Applying for Grade": formData.grade === 'pre-primary' ? 'Pre-Primary (JrKG-SrKG)' :
+                           formData.grade === 'primary' ? 'Primary (Balvatika-Std 8)' :
+                           formData.grade === 'secondary' ? 'Secondary (Std 9-10)' : 'Higher Secondary (Std 11-12)',
       "Message/Inquiry": formData.message,
       "_subject": "New Admission Inquiry from SATTVA Website",
       "_captcha": "false"
@@ -76,9 +76,9 @@ const Admissions = () => {
   };
 
   const faqs = [
-    { q: "What is the age cutoff for Kindergarten admission?", a: "Children must be 5 years old by June 1st of the academic enrollment year." },
+    { q: "What is the age cutoff for JrKG admission?", a: "Children must be 3 years old by June 1st of the academic enrollment year." },
     { q: "Do you offer transportation services?", a: "Yes, we operate a safe and comprehensive GPS-enabled school transport bus service covering Singarwa, Bhuvaladi, Odhav, Vastral, Nikol, and other surrounding parts of Ahmedabad." },
-    { q: "What is the medium of instruction?", a: "Every grade from JrKG to Grade 12 is offered in both English and Gujarati medium under the GSEB curriculum." },
+    { q: "What is the medium of instruction?", a: "Every standard from JrKG to Std 12 is offered in both English and Gujarati medium under the GSEB curriculum." },
     { q: "Can we schedule a campus tour?", a: "Absolutely! Campus tours can be scheduled during school office hours. Please contact the admissions office at +91 97144 81717 to book your visit." }
   ];
 
@@ -146,27 +146,27 @@ const Admissions = () => {
             {/* Curriculum Side */}
             <div className="tuition-side">
               <h2 className="finance-heading">Our Curriculum</h2>
-              <p className="finance-subheading">GSEB Board &middot; JrKG to Grade 12</p>
+              <p className="finance-subheading">GSEB Board &middot; JrKG to Std 12</p>
 
               <div className="tuition-table-premium">
                 <div className="tuition-row">
-                  <span className="grade-level">JrKG - Grade 5 <span className="grade-detail">(Primary)</span></span>
+                  <span className="grade-level">JrKG - SrKG <span className="grade-detail">(Pre-Primary)</span></span>
                   <span className="fee-amount">Foundational Learning</span>
                 </div>
                 <div className="tuition-row">
-                  <span className="grade-level">Grade 6 - Grade 8 <span className="grade-detail">(Middle School)</span></span>
+                  <span className="grade-level">Balvatika - Std 8 <span className="grade-detail">(Primary)</span></span>
                   <span className="fee-amount">Core GSEB Curriculum</span>
                 </div>
                 <div className="tuition-row">
-                  <span className="grade-level">Grade 9 - Grade 10 <span className="grade-detail">(Secondary)</span></span>
+                  <span className="grade-level">Std 9 - Std 10 <span className="grade-detail">(Secondary)</span></span>
                   <span className="fee-amount">Board Exam Preparation</span>
                 </div>
                 <div className="tuition-row">
-                  <span className="grade-level">Grade 11 - Grade 12 <span className="grade-detail">(Higher Secondary)</span></span>
+                  <span className="grade-level">Std 11 - Std 12 <span className="grade-detail">(Higher Secondary)</span></span>
                   <span className="fee-amount">Science & Commerce</span>
                 </div>
               </div>
-              <p className="fee-disclaimer">* Every grade is offered in both English and Gujarati medium under the GSEB curriculum.</p>
+              <p className="fee-disclaimer">* Every standard is offered in both English and Gujarati medium under the GSEB curriculum.</p>
             </div>
 
             {/* Why Choose Us Side */}
@@ -233,8 +233,8 @@ const Admissions = () => {
           <div className="form-image-side">
             <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000" alt="Students studying" />
             <div className="form-image-overlay">
-              <h3 className="overlay-quote">"Education is not the filling of a pail, but the lighting of a fire."</h3>
-              <p className="overlay-author">— W.B. Yeats</p>
+              <h3 className="overlay-quote">"Live as if you were to die tomorrow. Learn as if you were to live forever."</h3>
+              <p className="overlay-author">— Mahatma Gandhi</p>
             </div>
           </div>
           
@@ -327,10 +327,10 @@ const Admissions = () => {
                       required
                     >
                       <option value="" disabled hidden></option>
-                      <option value="k">Kindergarten</option>
-                      <option value="primary">Primary (Grades 1-5)</option>
-                      <option value="middle">Middle (Grades 6-8)</option>
-                      <option value="high">High School (Grades 9-12)</option>
+                      <option value="pre-primary">Pre-Primary (JrKG-SrKG)</option>
+                      <option value="primary">Primary (Balvatika-Std 8)</option>
+                      <option value="secondary">Secondary (Std 9-10)</option>
+                      <option value="higher-secondary">Higher Secondary (Std 11-12)</option>
                     </select>
                     <label htmlFor="grade">Applying for Grade Level</label>
                   </div>

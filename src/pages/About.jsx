@@ -1,4 +1,4 @@
-import { Award, Target, Heart, Shield, CheckCircle } from 'lucide-react';
+import { Award, Target, Heart, Shield, CheckCircle, Mic2, PartyPopper, Flag } from 'lucide-react';
 import './About.css';
 
 const About = () => {
@@ -9,17 +9,16 @@ const About = () => {
     { icon: <Award className="value-icon" />, title: "Innovation", desc: "Embracing new ideas and creative problem-solving.", tile: "blue" }
   ];
 
-  const leadership = [
-    { name: "Dr. Sarah Jenkins", role: "Principal", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300&h=300" },
-    { name: "Prof. Michael Chang", role: "Vice Principal, Academics", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300&h=300" },
-    { name: "Eleanor Rigby", role: "Head of Student Affairs", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300&h=300" },
-    { name: "David Osei", role: "Director of Athletics", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300&h=300" }
+  const lifeAtSattva = [
+    { icon: <Mic2 className="value-icon" />, title: "Annual Function", desc: "Every year, students take center stage to showcase their talents — dance, karate demonstrations, anchoring, and commentary — celebrating a year of growth and confidence.", tile: "red" },
+    { icon: <PartyPopper className="value-icon" />, title: "Festival Celebrations", desc: "From Uttarayan to Diwali, Navratri to Janmashtami, every Indian and Gujarati festival is celebrated at school, keeping students rooted in tradition and culture.", tile: "green" },
+    { icon: <Flag className="value-icon" />, title: "House System", desc: "Every student, across every standard, belongs to one of four houses — Glory, Prestige, and two more — building teamwork, healthy competition, and leadership from an early age.", tile: "purple" }
   ];
 
   const history = [
     { year: "2022", title: "Foundation", desc: "SATTVA International School was founded in Singarwa, Ahmedabad with a vision of blending value-based traditional learning with modern smart education." },
     { year: "2023", title: "GSEB Affiliation Secured", desc: "Successfully secured GSEB curriculum approval, offering both English and Gujarati medium instruction." },
-    { year: "2024", title: "Infrastructure & Lab Expansion", desc: "Inaugurated advanced chemistry, physics, and computational thinking labs, along with wheelchair-accessible facilities." },
+    { year: "2024", title: "Infrastructure & Lab Expansion", desc: "Inaugurated dedicated physics, chemistry, and biology laboratories, two auditoriums, and fully air-conditioned classrooms." },
     { year: "2026", title: "Holistic Development Leader", desc: "Emerged as a premium center of primary and secondary education, known for character building and safety." }
   ];
 
@@ -58,39 +57,12 @@ const About = () => {
         </div>
       </section>
 
-      {/* Principal's Message */}
-      <section className="section principal-msg glass mx-auto my-4">
-        <div className="container">
-          <div className="msg-container">
-            <div className="msg-image-wrapper">
-              <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
-                srcSet="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300 300w, https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600 600w"
-                sizes="(min-width: 768px) 300px, 220px"
-                alt="Principal Dr. Sarah Jenkins"
-                className="msg-image"
-                loading="lazy"
-                width="400"
-                height="400"
-              />
-            </div>
-            <div className="msg-content">
-              <h2 className="section-title">Message from the Principal</h2>
-              <h3 className="principal-name">Dr. Sarah Jenkins</h3>
-              <p className="msg-text">
-                "Welcome to SATTVA International School. Since our foundation in Ahmedabad, we have dedicated ourselves to the profound task of nurturing young minds through value-based education. We believe that true learning extends far beyond academic achievements; it is about building strong character, fostering physical and ethical growth, and inspiring a lifelong curiosity. Our campus provides a safe, smart, and resource-rich environment where every child can discover their potential. Join us in this beautiful journey of learning and character building."
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* History Timeline */}
       <section className="section history-section bg-light">
         <div className="container">
           <div className="section-header text-center">
             <h2 className="section-title">Our Journey</h2>
-            <p className="section-subtitle">Over two decades of shaping futures.</p>
+            <p className="section-subtitle">A young institution, growing with purpose since 2022.</p>
           </div>
           <div className="timeline">
             {history.map((event, idx) => (
@@ -128,31 +100,34 @@ const About = () => {
         </div>
       </section>
 
-      {/* Leadership Team */}
-      <section className="section leadership-section bg-light">
+      {/* Life at SATTVA */}
+      <section className="section life-section bg-light">
         <div className="container">
           <div className="section-header text-center">
-            <h2 className="section-title">Our Leadership Team</h2>
-            <p className="section-subtitle">Meet the dedicated professionals leading our institution.</p>
+            <h2 className="section-title">Life at SATTVA</h2>
+            <p className="section-subtitle">Beyond the classroom — the moments that shape our students.</p>
           </div>
-          <div className="grid grid-2 grid-4-lg">
-            {leadership.map((leader, idx) => (
-              <div key={idx} className="leader-card glass text-center hover-lift">
-                <img
-                  src={leader.image}
-                  srcSet={`${leader.image.replace('w=300&h=300', 'w=150&h=150')} 150w, ${leader.image} 300w`}
-                  sizes="120px"
-                  alt={leader.name}
-                  className="leader-image"
-                  loading="lazy"
-                  width="200"
-                  height="200"
-                />
-                <h3 className="leader-name">{leader.name}</h3>
-                <p className="leader-role">{leader.role}</p>
+          <div className="grid grid-2 grid-3-lg">
+            {lifeAtSattva.map((item, idx) => (
+              <div key={idx} className="value-card text-center glass hover-lift">
+                <div className={`value-icon-wrapper mx-auto tile-${item.tile}`}>
+                  {item.icon}
+                </div>
+                <h3 className="value-title">{item.title}</h3>
+                <p className="value-desc">{item.desc}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section className="section quote-section text-center">
+        <div className="container">
+          <blockquote className="legend-quote">
+            "Education is the manifestation of the perfection already in man."
+          </blockquote>
+          <p className="legend-quote-author">— Swami Vivekananda</p>
         </div>
       </section>
 
@@ -165,7 +140,7 @@ const About = () => {
               <CheckCircle className="text-primary" /> <span className="font-semibold">GSEB State Affiliated</span>
             </div>
             <div className="glass px-4 py-2 affiliation-chip">
-              <CheckCircle className="text-primary" /> <span className="font-semibold">JrKG to Grade 12</span>
+              <CheckCircle className="text-primary" /> <span className="font-semibold">JrKG to Std 12</span>
             </div>
             <div className="glass px-4 py-2 affiliation-chip">
               <CheckCircle className="text-primary" /> <span className="font-semibold">English & Gujarati Mediums</span>

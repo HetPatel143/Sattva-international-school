@@ -102,6 +102,16 @@ const Gallery = () => {
         </div>
       </section>
 
+      {/* Quote */}
+      <section className="section quote-section text-center">
+        <div className="container">
+          <blockquote className="legend-quote">
+            "Don't limit a child to your own learning, for he was born in another time."
+          </blockquote>
+          <p className="legend-quote-author">— Rabindranath Tagore</p>
+        </div>
+      </section>
+
       <section className="section gallery-section">
         <div className="container">
           {/* Category Filter Bar */}

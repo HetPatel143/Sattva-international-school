@@ -1,19 +1,22 @@
-import { BookOpen, Laptop, FlaskConical, Music, Palette, Users, Globe2, Lightbulb, Calendar as CalendarIcon, HeartHandshake } from 'lucide-react';
+import { BookOpen, Backpack, FlaskConical, GraduationCap, Palette, Music2, Swords, Dumbbell, Activity, Flower2, Monitor, Globe2, Calendar as CalendarIcon, HeartHandshake } from 'lucide-react';
 import './Academics.css';
 
 const Academics = () => {
   const programs = [
-    { icon: <BookOpen className="program-icon" />, title: "Primary Schooling", desc: "From JrKG & SrKG up to Grade 5. Builds foundational reading, writing, mathematical literacy, and cognitive thinking." },
-    { icon: <Laptop className="program-icon" />, title: "Secondary Education", desc: "Grades 6 to 10 with a rich curriculum aligned with GSEB standards, introducing computer studies and advanced science." },
-    { icon: <FlaskConical className="program-icon" />, title: "Higher Secondary (Science)", desc: "Grades 11 & 12 streams with deep focus on Physics, Chemistry, Biology, Mathematics, and advanced laboratory investigations." },
-    { icon: <Music className="program-icon" />, title: "Higher Secondary (Commerce)", desc: "Grades 11 & 12 streams focusing on business management, Economics, Accountancy, statistics, and organizational leadership." },
+    { icon: <BookOpen className="program-icon" />, title: "Pre-Primary", desc: "JrKG & SrKG — playful, activity-based learning that builds curiosity, motor skills, and a lifelong love of school." },
+    { icon: <Backpack className="program-icon" />, title: "Primary", desc: "Balvatika to Std 8. Builds foundational reading, writing, mathematical literacy, and cognitive thinking." },
+    { icon: <FlaskConical className="program-icon" />, title: "Secondary", desc: "Std 9 & 10 with a rich curriculum aligned with GSEB standards, preparing students for board examinations." },
+    { icon: <GraduationCap className="program-icon" />, title: "Higher Secondary", desc: "Std 11 & 12 with Science and Commerce streams, each with focused subjects and dedicated faculty." },
   ];
 
   const cocurriculars = [
-    { icon: <Palette />, title: "Fine Arts Club" },
-    { icon: <Globe2 />, title: "Model United Nations" },
-    { icon: <Lightbulb />, title: "Robotics & Coding" },
-    { icon: <Users />, title: "Debate Society" }
+    { icon: <Palette />, title: "Drawing & Arts" },
+    { icon: <Music2 />, title: "Dance" },
+    { icon: <Swords />, title: "Karate" },
+    { icon: <Dumbbell />, title: "Physical Training" },
+    { icon: <Activity />, title: "Skating" },
+    { icon: <Flower2 />, title: "Yoga & Meditation" },
+    { icon: <Monitor />, title: "Computer" }
   ];
 
   const supportServices = [
@@ -23,8 +26,8 @@ const Academics = () => {
       icon: <BookOpen size={32} />
     },
     {
-      title: "College Counseling",
-      desc: "Dedicated advisors helping students navigate university applications and scholarships.",
+      title: "Stream & Career Guidance",
+      desc: "Dedicated advisors help students choose between Science and Commerce at Std 11, and plan their path ahead.",
       icon: <Globe2 size={32} />
     },
     {
@@ -49,7 +52,17 @@ const Academics = () => {
         </div>
         <div className="page-header-content container">
           <h1 className="page-title">Academics at SATTVA</h1>
-          <p className="page-subtitle">A GSEB-affiliated curriculum from JrKG to Grade 12, offered in both English and Gujarati medium.</p>
+          <p className="page-subtitle">A GSEB-affiliated curriculum from JrKG to Std 12, offered in both English and Gujarati medium.</p>
+        </div>
+      </section>
+
+      {/* Quote */}
+      <section className="section quote-section text-center">
+        <div className="container">
+          <blockquote className="legend-quote">
+            "Teachers should be the best minds in the country."
+          </blockquote>
+          <p className="legend-quote-author">— Dr. Sarvepalli Radhakrishnan</p>
         </div>
       </section>
 
@@ -126,19 +139,19 @@ const Academics = () => {
           <div className="grid grid-2">
             <div className="facility-card glass hover-lift">
               <h3 className="facility-title">Science Laboratories</h3>
-              <p>Equipped with modern instrumentation for chemistry, physics, and biology experiments.</p>
+              <p>Dedicated Physics, Chemistry, and Biology labs equipped for hands-on experiments in the Science stream.</p>
             </div>
             <div className="facility-card glass hover-lift">
-              <h3 className="facility-title">Computer & Innovation Lab</h3>
-              <p>High‑performance workstations, 3D printers, and robotics kits.</p>
+              <h3 className="facility-title">Computer Lab</h3>
+              <p>A well-equipped lab where students learn computer basics, Word, Excel, painting, and HTML/CSS as per the GSEB curriculum.</p>
             </div>
             <div className="facility-card glass hover-lift">
-              <h3 className="facility-title">Arts Studio & Music Hall</h3>
-              <p>Spacious studios, sound‑proof practice rooms, and a performance auditorium.</p>
+              <h3 className="facility-title">Two Auditoriums</h3>
+              <p>Spacious venues that host our annual function, cultural events, and school assemblies.</p>
             </div>
             <div className="facility-card glass hover-lift">
-              <h3 className="facility-title">Sports Complex</h3>
-              <p>Indoor courts, fitness centre, and outdoor fields for diverse athletics.</p>
+              <h3 className="facility-title">Fully AC Classrooms</h3>
+              <p>Every classroom is air-conditioned, keeping students comfortable and focused through the school day.</p>
             </div>
           </div>
         </div>
