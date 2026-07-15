@@ -39,7 +39,13 @@ const Academics = () => {
       {/* Header Section */}
       <section className="page-header">
         <div className="page-header-bg">
-          <img src="https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=1920" alt="Academics" loading="lazy" />
+          <img
+            src="https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=1920"
+            srcSet="https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=1920 1920w"
+            sizes="100vw"
+            alt="Academics"
+            fetchPriority="high"
+          />
         </div>
         <div className="page-header-content container">
           <h1 className="page-title">Academics at SATTVA</h1>
@@ -139,7 +145,7 @@ const Academics = () => {
       </section>
       
       {/* Calendar Highlights Banner */}
-      <section className="section calendar-section text-center" style={{ background: 'linear-gradient(135deg, var(--color-primary-dark), var(--color-primary))', color: 'white' }}>
+      <section className="section calendar-section text-center">
         <div className="container">
           <CalendarIcon size={48} className="mx-auto mb-4 opacity-75" />
           <h2 className="section-title text-white">Academic Calendar 2026-27</h2>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Gallery.css';
@@ -6,6 +6,8 @@ import './Gallery.css';
 const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState('All');
+  const lightboxRef = useRef(null);
+  const touchStartXRef = useRef(null);
 
   const categories = ['All', 'Campus', 'Academics', 'Sports', 'Events'];
 
@@ -34,6 +36,19 @@ const Gallery = () => {
   const showPrev = () => setSelectedIndex((i) => (i - 1 + filteredImages.length) % filteredImages.length);
   const showNext = () => setSelectedIndex((i) => (i + 1) % filteredImages.length);
 
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartXRef.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const SWIPE_THRESHOLD = 50;
+    if (deltaX > SWIPE_THRESHOLD) showPrev();
+    else if (deltaX < -SWIPE_THRESHOLD) showNext();
+    touchStartXRef.current = null;
+  };
+
   // Keyboard navigation & scroll lock while lightbox is open
   useEffect(() => {
     const count = filteredImages.length;
@@ -41,6 +56,21 @@ const Gallery = () => {
       if (e.key === 'Escape') setSelectedIndex(null);
       if (e.key === 'ArrowLeft') setSelectedIndex((i) => (i - 1 + count) % count);
       if (e.key === 'ArrowRight') setSelectedIndex((i) => (i + 1) % count);
+
+      // Trap focus inside the lightbox while it's open
+      if (e.key === 'Tab' && lightboxRef.current) {
+        const focusable = lightboxRef.current.querySelectorAll('button');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     if (selectedIndex !== null) {
       document.addEventListener('keydown', handleKeyDown);
@@ -58,7 +88,13 @@ const Gallery = () => {
     <div className="gallery-page animate-fade-in">
       <section className="page-header">
         <div className="page-header-bg">
-          <img src="https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=1920" alt="Gallery header" loading="lazy" />
+          <img
+            src="https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=1920"
+            srcSet="https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=1920 1920w"
+            sizes="100vw"
+            alt="Gallery header"
+            fetchPriority="high"
+          />
         </div>
         <div className="page-header-content container">
           <h1 className="page-title">Life at SATTVA</h1>
@@ -88,13 +124,20 @@ const Gallery = () => {
               return (
                 <div
                   key={img.src}
-                  className={`gallery-item animate-fade-in ${isLarge ? 'gallery-item-large' : ''}`}
+                  className={`gallery-item ${isLarge ? 'gallery-item-large' : ''}`}
                   onClick={() => setSelectedIndex(idx)}
+                  role="button"
                   tabIndex={0}
                   onKeyDown={(e) => { if (e.key === 'Enter') setSelectedIndex(idx); }}
                   aria-label={`View larger image of ${img.alt}`}
                 >
-                  <img src={img.src} alt={img.alt} loading="lazy" />
+                  <img
+                    src={img.src}
+                    srcSet={`${img.src.replace('w=800', 'w=400')} 400w, ${img.src} 800w`}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                    alt={img.alt}
+                    loading="lazy"
+                  />
                   <div className="gallery-item-overlay">
                     <span className="gallery-item-caption">{img.alt}</span>
                     <span className="gallery-item-category">{img.category}</span>
@@ -109,6 +152,7 @@ const Gallery = () => {
       {/* Lightbox — portaled to body so it isn't confined by any transformed ancestor */}
       {selectedImage && createPortal(
         <div
+          ref={lightboxRef}
           className="lightbox open"
           onClick={() => setSelectedIndex(null)}
           role="dialog"
@@ -143,7 +187,12 @@ const Gallery = () => {
             </>
           )}
 
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <img src={selectedImage.src} alt={selectedImage.alt} className="lightbox-image" />
             <p className="lightbox-caption">{selectedImage.alt}</p>
             {filteredImages.length > 1 && (

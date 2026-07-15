@@ -28,6 +28,12 @@ const Navbar = () => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
+  // Lock background scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -73,8 +79,11 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* Backdrop — tap outside the menu to close it */}
+      {isOpen && <div className="mobile-nav-backdrop" onClick={closeMenu} aria-hidden="true"></div>}
+
       {/* Mobile Nav */}
-      <div 
+      <div
         id="mobile-menu"
         className={`mobile-nav ${isOpen ? 'open' : ''}`}
       >

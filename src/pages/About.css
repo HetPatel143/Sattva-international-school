@@ -1,8 +1,14 @@
 /* Mission & Vision */
 .mission-card, .vision-card {
-  padding: 3rem 2rem;
+  padding: 1.75rem 1.5rem;
   border-radius: var(--radius-lg);
   height: 100%;
+}
+
+@media (min-width: 768px) {
+  .mission-card, .vision-card {
+    padding: 3rem 2rem;
+  }
 }
 
 .mv-title {
@@ -11,25 +17,59 @@
 }
 
 /* Principal's Message */
+.principal-msg {
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 768px) {
+  .principal-msg {
+    max-width: 90%;
+  }
+}
+
 .msg-container {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.75rem;
   align-items: center;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 @media (min-width: 768px) {
   .msg-container {
     flex-direction: row;
+    gap: 3rem;
+    padding: 2rem;
   }
 }
 
+/* Text reads before the portrait on phones; image resumes its place beside the text from tablet up */
+.msg-content {
+  order: 1;
+  flex: 1;
+}
+
 .msg-image-wrapper {
-  flex: 0 0 300px;
+  order: 2;
+  width: 220px;
+  max-width: 60%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 768px) {
+  .msg-content {
+    order: 0;
+  }
+
+  .msg-image-wrapper {
+    order: 0;
+    flex: 0 0 300px;
+    width: 300px;
+    max-width: none;
+  }
 }
 
 .msg-image {
@@ -37,10 +77,6 @@
   height: auto;
   object-fit: cover;
   aspect-ratio: 1/1;
-}
-
-.msg-content {
-  flex: 1;
 }
 
 .principal-name {
@@ -209,3 +245,17 @@
 .text-primary { color: var(--color-primary); }
 .px-4 { padding-left: 1rem; padding-right: 1rem; }
 .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+.affiliation-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.affiliation-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-full);
+}

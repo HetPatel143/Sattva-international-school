@@ -43,41 +43,102 @@
 .hero-content {
   color: white;
   width: 100%;
-  padding: 4rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   z-index: 1;
 }
 
+@media (min-width: 768px) {
+  .hero-content {
+    padding: 4rem 1.5rem;
+  }
+}
+
 .hero-title {
-  font-size: clamp(3rem, 8vw, 6rem);
-  margin-bottom: 1rem;
+  font-size: clamp(2rem, 5vw + 1rem, 6rem);
+  margin-bottom: 0.75rem;
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   text-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+@media (min-width: 768px) {
+  .hero-title {
+    margin-bottom: 1rem;
+    letter-spacing: 4px;
+  }
+}
+
 .hero-subtitle {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw + 0.6rem, 1.75rem);
+  opacity: 0.9;
   text-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero-actions {
+    margin-top: 3rem;
+  }
+}
+
+.hero-actions .hero-cta-btn {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+@media (min-width: 480px) {
+  .hero-actions .hero-cta-btn {
+    width: auto;
+    padding: 1rem 3rem;
+  }
 }
 
 /* Statistics Section */
 .stats-section {
-  padding: 4rem 0;
-  margin-top: -3rem;
+  padding: 2.5rem 0;
   position: relative;
   z-index: 10;
-  border-radius: var(--radius-lg);
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  border-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .stats-section {
+    padding: 4rem 0;
+    margin-top: -3rem;
+    border-radius: var(--radius-lg);
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 479px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .stat-card {
-  padding: 1.5rem;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .stat-card {
+    padding: 1.5rem;
+  }
 }
 
 .stat-icon {
@@ -111,9 +172,23 @@
   transition: all var(--transition-normal);
 }
 
-.hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+@media (max-width: 479px) {
+  .features-grid,
+  .curriculum-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-card,
+  .curriculum-tile {
+    padding: 1.25rem 1rem;
+  }
 }
 
 .feature-icon-wrapper {
@@ -182,16 +257,41 @@
 
 .relative { position: relative; }
 .z-10 { z-index: 10; }
-.text-white { color: white !important; }
-.shadow-glow { box-shadow: var(--shadow-glow); }
 
-/* Testimonials */
+/* Testimonials — horizontal snap carousel on phones, grid from tablet up */
+@media (max-width: 767px) {
+  .testimonials-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.25rem;
+    margin: 0 -1.25rem;
+    padding: 0.25rem 1.25rem 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .testimonials-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonials-grid .testimonial-card {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+}
+
 .testimonial-card {
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+@media (min-width: 768px) {
+  .testimonial-card {
+    padding: 2.5rem;
+  }
 }
 
 .quote-icon {
@@ -338,17 +438,34 @@
 }
 
 .cta-btn-wrapper {
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .cta-btn-wrapper {
+    margin-top: 2.5rem;
+    width: auto;
+  }
 }
 
 .cta-content .btn-primary {
   background-color: #4C7230;
   color: white;
+  width: 100%;
 }
 
-.cta-content .btn-primary:hover {
-  background-color: #3D5C26;
-  color: white;
+@media (min-width: 480px) {
+  .cta-content .btn-primary {
+    width: auto;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta-content .btn-primary:hover {
+    background-color: #3D5C26;
+    color: white;
+  }
 }
 
 .cta-title {
@@ -363,7 +480,3 @@
   opacity: 0.9;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-}

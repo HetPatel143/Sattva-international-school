@@ -77,14 +77,14 @@ const Home = () => {
           fetchPriority="high"
         />
         <div className="container hero-content text-center">
-          <h1 className="hero-title animate-fade-in delay-100" style={{ textTransform: 'uppercase', letterSpacing: '4px' }}>
+          <h1 className="hero-title animate-fade-in delay-100">
             SATTVA INTERNATIONAL SCHOOL
           </h1>
-          <p className="hero-subtitle mx-auto animate-fade-in delay-200" style={{ fontFamily: 'var(--font-heading)', fontStyle: 'italic', fontSize: '1.75rem', opacity: 0.9 }}>
+          <p className="hero-subtitle mx-auto animate-fade-in delay-200">
             Excellence. Heritage. Character.
           </p>
-          <div className="hero-actions flex-center animate-fade-in delay-300" style={{ marginTop: '3rem' }}>
-            <Link to="/admissions" className="btn btn-primary" style={{ padding: '1rem 3rem', fontSize: '1.125rem', backgroundColor: 'var(--color-secondary)', color: 'var(--color-primary)' }}>
+          <div className="hero-actions flex-center animate-fade-in delay-300">
+            <Link to="/admissions" className="btn btn-primary hero-cta-btn">
               Inquire Today
             </Link>
           </div>
@@ -94,7 +94,7 @@ const Home = () => {
       {/* Statistics Section */}
       <section className="section stats-section glass">
         <div className="container">
-          <div className="grid grid-2 grid-4-lg">
+          <div className="grid grid-2 grid-4-lg stats-grid">
             {stats.map((stat, idx) => (
               <div key={idx} className="stat-card text-center">
                 <div className="stat-icon mx-auto">{stat.icon}</div>
@@ -156,7 +156,7 @@ const Home = () => {
             <h2 className="section-title">Voices of SATTVA</h2>
             <p className="section-subtitle">Hear what our parents and alumni have to say about their experience.</p>
           </div>
-          <div className="grid grid-3">
+          <div className="grid grid-3 testimonials-grid">
             {testimonials.map((testimonial, idx) => (
               <div key={idx} className="testimonial-card glass">
                 <Quote className="quote-icon" size={32} />

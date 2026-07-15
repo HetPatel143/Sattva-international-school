@@ -13,10 +13,13 @@
 }
 
 .filter-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   background: transparent;
   border: none;
   color: var(--color-text-muted);
-  padding: 0.65rem 1.5rem;
+  padding: 0.5rem 1.25rem;
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -26,8 +29,16 @@
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.filter-btn:hover {
-  color: var(--color-primary);
+@media (min-width: 640px) {
+  .filter-btn {
+    padding: 0.65rem 1.5rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .filter-btn:hover {
+    color: var(--color-primary);
+  }
 }
 
 .filter-btn.active {
@@ -88,23 +99,34 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(36, 26, 18, 0.9) 0%, rgba(36, 26, 18, 0.3) 60%, transparent 100%);
-  opacity: 0;
+  /* Visible by default (touch devices can't hover, so captions must always be readable) */
+  opacity: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 2rem;
+  padding: 1.25rem;
   transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
+}
+
+@media (min-width: 640px) {
+  .gallery-item-overlay {
+    padding: 2rem;
+  }
 }
 
 .gallery-item-caption {
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
-  transform: translateY(15px);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .gallery-item-caption {
+    font-size: 1.25rem;
+  }
 }
 
 .gallery-item-category {
@@ -113,27 +135,41 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  transform: translateY(15px);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
 }
 
-/* Hover States */
-.gallery-item:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-}
+/* On pointer devices, hide the caption until hover for a cleaner grid, with a subtle reveal */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item-overlay {
+    opacity: 0;
+  }
 
-.gallery-item:hover img {
-  transform: scale(1.06);
-}
+  .gallery-item-caption,
+  .gallery-item-category {
+    transform: translateY(15px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-.gallery-item:hover .gallery-item-overlay {
-  opacity: 1;
-}
+  .gallery-item-category {
+    transition-delay: 0.05s;
+  }
 
-.gallery-item:hover .gallery-item-caption,
-.gallery-item:hover .gallery-item-category {
-  transform: translateY(0);
+  .gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.06);
+  }
+
+  .gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+  }
+
+  .gallery-item:hover .gallery-item-caption,
+  .gallery-item:hover .gallery-item-category {
+    transform: translateY(0);
+  }
 }
 
 /* Lightbox Styles */

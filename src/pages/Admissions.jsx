@@ -69,7 +69,7 @@ const Admissions = () => {
         setStatus('error');
         setErrorMessage(data.message || "Failed to submit application. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setStatus('error');
       setErrorMessage("A network error occurred. Please check your connection and try again.");
     }
@@ -87,11 +87,17 @@ const Admissions = () => {
       {/* Header Section */}
       <section className="page-header">
         <div className="page-header-bg">
-          <img src="https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=1920" alt="Admissions" loading="lazy" />
+          <img
+            src="https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=1920"
+            srcSet="https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=1920 1920w"
+            sizes="100vw"
+            alt="Admissions"
+            fetchPriority="high"
+          />
         </div>
         <div className="page-header-content container text-center">
-          <h1 className="page-title" style={{ textTransform: 'uppercase', letterSpacing: '2px' }}>Admissions</h1>
-          <p className="page-subtitle mx-auto" style={{ fontFamily: 'var(--font-heading)', fontStyle: 'italic', fontSize: '1.5rem', opacity: 0.9 }}>
+          <h1 className="page-title page-title-emphasis">Admissions</h1>
+          <p className="page-subtitle page-subtitle-italic mx-auto">
             Begin your journey of excellence at SATTVA International School.
           </p>
         </div>
@@ -209,7 +215,7 @@ const Admissions = () => {
                       <ChevronDown className="faq-icon" />
                     </span>
                   </button>
-                  <div className="premium-faq-answer-wrapper" style={{ maxHeight: activeFaq === idx ? '200px' : '0' }}>
+                  <div className={`premium-faq-answer-wrapper ${activeFaq === idx ? 'open' : ''}`}>
                     <div className="premium-faq-answer">
                       {faq.a}
                     </div>

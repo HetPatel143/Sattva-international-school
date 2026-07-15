@@ -28,7 +28,13 @@ const About = () => {
       {/* Page Header */}
       <section className="page-header">
         <div className="page-header-bg">
-           <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1920" alt="About SATTVA" loading="lazy" />
+           <img
+             src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1920"
+             srcSet="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1920 1920w"
+             sizes="100vw"
+             alt="About SATTVA"
+             fetchPriority="high"
+           />
         </div>
         <div className="page-header-content container">
           <h1 className="page-title">About SATTVA School</h1>
@@ -53,11 +59,20 @@ const About = () => {
       </section>
 
       {/* Principal's Message */}
-      <section className="section principal-msg glass mx-auto my-4" style={{ maxWidth: '90%', borderRadius: 'var(--radius-lg)' }}>
+      <section className="section principal-msg glass mx-auto my-4">
         <div className="container">
           <div className="msg-container">
             <div className="msg-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600" alt="Principal Dr. Sarah Jenkins" className="msg-image" loading="lazy" width="400" height="400" />
+              <img
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600"
+                srcSet="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300 300w, https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600 600w"
+                sizes="(min-width: 768px) 300px, 220px"
+                alt="Principal Dr. Sarah Jenkins"
+                className="msg-image"
+                loading="lazy"
+                width="400"
+                height="400"
+              />
             </div>
             <div className="msg-content">
               <h2 className="section-title">Message from the Principal</h2>
@@ -123,7 +138,16 @@ const About = () => {
           <div className="grid grid-2 grid-4-lg">
             {leadership.map((leader, idx) => (
               <div key={idx} className="leader-card glass text-center hover-lift">
-                <img src={leader.image} alt={leader.name} className="leader-image" loading="lazy" width="200" height="200" />
+                <img
+                  src={leader.image}
+                  srcSet={`${leader.image.replace('w=300&h=300', 'w=150&h=150')} 150w, ${leader.image} 300w`}
+                  sizes="120px"
+                  alt={leader.name}
+                  className="leader-image"
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                />
                 <h3 className="leader-name">{leader.name}</h3>
                 <p className="leader-role">{leader.role}</p>
               </div>
@@ -136,17 +160,17 @@ const About = () => {
       <section className="section accreditations-section text-center">
         <div className="container">
           <h2 className="section-title mb-4">Affiliations & Offerings</h2>
-          <div className="flex-center" style={{ gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', display: 'flex' }}>
-            <div className="glass px-4 py-2 flex-center" style={{ gap: '0.5rem', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center' }}>
+          <div className="affiliation-chips">
+            <div className="glass px-4 py-2 affiliation-chip">
               <CheckCircle className="text-primary" /> <span className="font-semibold">GSEB State Affiliated</span>
             </div>
-            <div className="glass px-4 py-2 flex-center" style={{ gap: '0.5rem', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center' }}>
+            <div className="glass px-4 py-2 affiliation-chip">
               <CheckCircle className="text-primary" /> <span className="font-semibold">JrKG to Grade 12</span>
             </div>
-            <div className="glass px-4 py-2 flex-center" style={{ gap: '0.5rem', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center' }}>
+            <div className="glass px-4 py-2 affiliation-chip">
               <CheckCircle className="text-primary" /> <span className="font-semibold">English & Gujarati Mediums</span>
             </div>
-            <div className="glass px-4 py-2 flex-center" style={{ gap: '0.5rem', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center' }}>
+            <div className="glass px-4 py-2 affiliation-chip">
               <CheckCircle className="text-primary" /> <span className="font-semibold">Science & Commerce Streams</span>
             </div>
           </div>
