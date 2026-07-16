@@ -95,21 +95,13 @@ const Navbar = () => {
             onClick={closeMenu}
           >
             <span>{link.name}</span>
-            <ArrowRight size={16} className="mobile-arrow-icon" style={{ opacity: 0.5 }} />
+            <ArrowRight size={16} className="mobile-arrow-icon" />
           </Link>
         ))}
-        <Link 
-          to="/admissions#apply-form" 
-          className="btn btn-primary" 
+        <Link
+          to="/admissions#apply-form"
+          className="btn btn-primary mobile-nav-apply-btn"
           onClick={closeMenu}
-          style={{ 
-            marginTop: '1rem', 
-            width: '100%', 
-            justifyContent: 'center',
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            fontWeight: '600'
-          }}
         >
           Apply Now
         </Link>

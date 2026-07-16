@@ -16,7 +16,7 @@
 .program-icon-wrapper {
   width: 60px;
   height: 60px;
-  background: rgba(196, 154, 112, 0.1);
+  background: rgba(184, 144, 90, 0.1);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -75,6 +75,17 @@
   width: 100%;
   height: auto;
   display: block;
+}
+
+.cocurricular-item {
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+}
+
+.cocurricular-image-wrapper img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
 .support-card {

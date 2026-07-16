@@ -22,8 +22,8 @@
   background-color: rgba(253, 251, 247, 0.94); /* Luxurious off-white cream base */
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.2); /* Soft champagne gold border */
-  box-shadow: 0 10px 30px -10px rgba(36, 26, 18, 0.08); /* Refined drop shadow */
+  border-bottom: 1px solid rgba(184, 144, 90, 0.2); /* Soft champagne gold border */
+  box-shadow: 0 10px 30px -10px rgba(11, 21, 38, 0.08); /* Refined drop shadow */
 }
 
 .nav-container {
@@ -142,7 +142,7 @@
   background-color: var(--color-secondary-light);
   color: var(--color-primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px -6px rgba(226, 199, 133, 0.4);
+  box-shadow: 0 8px 20px -6px rgba(217, 189, 147, 0.4);
 }
 
 /* Scrolled state for Apply button */
@@ -156,7 +156,7 @@
   background-color: var(--color-primary-light);
   border-color: var(--color-primary-light);
   color: #FFFFFF;
-  box-shadow: 0 8px 20px -6px rgba(36, 26, 18, 0.3);
+  box-shadow: 0 8px 20px -6px rgba(11, 21, 38, 0.3);
 }
 
 /* Mobile Toggle Hamburger */
@@ -183,7 +183,7 @@
 }
 
 .navbar.scrolled .mobile-toggle:hover {
-  background-color: rgba(36, 26, 18, 0.05);
+  background-color: rgba(11, 21, 38, 0.05);
 }
 
 /* Luxurious Slide-down Mobile Nav Menu */
@@ -192,7 +192,7 @@
   top: var(--nav-height); /* Matches initial navbar height */
   left: 0;
   width: 100%;
-  background-color: rgba(36, 26, 18, 0.98); /* Deep warm backing for high contrast */
+  background-color: rgba(11, 21, 38, 0.98); /* Deep navy backing for high contrast */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 2rem 1.5rem;
@@ -205,7 +205,7 @@
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
               opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
               top 0.4s ease;
-  border-bottom: 2px solid rgba(197, 160, 89, 0.3);
+  border-bottom: 2px solid rgba(184, 144, 90, 0.3);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   z-index: 999;
 }
@@ -213,8 +213,8 @@
 .navbar.scrolled .mobile-nav {
   top: var(--nav-height-scrolled); /* Matches scrolled navbar height */
   background-color: rgba(253, 251, 247, 0.98); /* Beautiful cream in scrolled view */
-  border-bottom: 2px solid rgba(197, 160, 89, 0.2);
-  box-shadow: 0 20px 40px rgba(36, 26, 18, 0.08);
+  border-bottom: 2px solid rgba(184, 144, 90, 0.2);
+  box-shadow: 0 20px 40px rgba(11, 21, 38, 0.08);
 }
 
 .mobile-nav.open {
@@ -249,20 +249,32 @@
   justify-content: space-between;
 }
 
+.mobile-arrow-icon {
+  opacity: 0.5;
+}
+
+.mobile-nav-apply-btn {
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
 .navbar.scrolled .mobile-nav-link {
   color: var(--color-text-main);
 }
 
 .mobile-nav-link:hover, 
 .mobile-nav-link.active {
-  background-color: rgba(226, 199, 133, 0.15);
+  background-color: rgba(217, 189, 147, 0.15);
   color: var(--color-secondary-light);
   padding-left: 1.6rem;
 }
 
 .navbar.scrolled .mobile-nav-link:hover, 
 .navbar.scrolled .mobile-nav-link.active {
-  background-color: rgba(36, 26, 18, 0.05);
+  background-color: rgba(11, 21, 38, 0.05);
   color: var(--color-primary);
   padding-left: 1.6rem;
 }

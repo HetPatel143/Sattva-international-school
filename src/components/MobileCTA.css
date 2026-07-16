@@ -1,0 +1,54 @@
+.mobile-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900; /* below the mobile nav drawer (999) and its backdrop (998) */
+  display: flex;
+  align-items: stretch;
+  background-color: var(--color-primary);
+  border-top: 1px solid rgba(184, 144, 90, 0.25);
+  box-shadow: 0 -8px 24px rgba(11, 21, 38, 0.18);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (min-width: 768px) {
+  .mobile-cta-bar {
+    display: none;
+  }
+}
+
+.mobile-cta-call,
+.mobile-cta-apply {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mobile-cta-call {
+  color: rgba(255, 255, 255, 0.9);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-cta-call:hover {
+  color: white;
+}
+
+.mobile-cta-apply {
+  background-color: var(--color-secondary);
+  color: var(--color-primary-dark);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mobile-cta-apply:hover {
+    background-color: var(--color-secondary-light);
+  }
+}

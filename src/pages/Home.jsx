@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, Trophy, Star, Quote, GraduationCap, Building, Award, FlaskConical, Languages, Palette, Landmark } from 'lucide-react';
+import { BookOpen, Users, Trophy, Star, Quote, GraduationCap, Building, Award, FlaskConical, Languages, Palette, Landmark, ChevronLeft, ChevronRight } from 'lucide-react';
+import Reveal from '../components/Reveal';
 import './Home.css';
 
 const Home = () => {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const features = [
     {
       icon: <BookOpen className="feature-icon" />,
@@ -65,6 +68,10 @@ const Home = () => {
     }
   ];
 
+  const showTestimonial = (direction) => {
+    setActiveTestimonial((current) => (current + direction + testimonials.length) % testimonials.length);
+  };
+
   return (
     <div className="home-page">
       {/* Hero Section */}
@@ -94,7 +101,7 @@ const Home = () => {
       {/* Statistics Section */}
       <section className="section stats-section glass">
         <div className="container">
-          <div className="grid grid-2 grid-4-lg stats-grid">
+          <Reveal className="grid grid-2 grid-4-lg stats-grid">
             {stats.map((stat, idx) => (
               <div key={idx} className="stat-card text-center">
                 <div className="stat-icon mx-auto">{stat.icon}</div>
@@ -102,19 +109,19 @@ const Home = () => {
                 <div className="stat-label">{stat.label}</div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
       <section className="section features-section">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Why Choose SATTVA?</h2>
             <p className="section-subtitle">We are committed to providing an environment where every child can thrive and excel.</p>
-          </div>
-          
-          <div className="grid grid-2 grid-4-lg features-grid">
+          </Reveal>
+
+          <Reveal className="grid grid-2 grid-4-lg features-grid" delay={100}>
             {features.map((feature, index) => (
               <div key={index} className="feature-card glass hover-lift">
                 <div className={`feature-icon-wrapper tile-${feature.tile}`}>
@@ -124,18 +131,18 @@ const Home = () => {
                 <p className="feature-card-desc">{feature.description}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Curriculum Highlights */}
       <section className="section curriculum-section bg-light">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Our Curriculum at a Glance</h2>
             <p className="section-subtitle">A GSEB-affiliated education built around every stage of your child's growth.</p>
-          </div>
-          <div className="grid grid-2 grid-4-lg curriculum-grid">
+          </Reveal>
+          <Reveal className="grid grid-2 grid-4-lg curriculum-grid" delay={100}>
             {curriculumHighlights.map((item, idx) => (
               <div key={idx} className="curriculum-tile glass hover-lift">
                 <div className={`curriculum-tile-icon tile-${item.tile}`}>
@@ -145,7 +152,7 @@ const Home = () => {
                 <p className="curriculum-tile-desc">{item.desc}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -162,32 +169,70 @@ const Home = () => {
       {/* Testimonials */}
       <section className="section testimonials-section bg-light">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Voices of SATTVA</h2>
             <p className="section-subtitle">Hear what our parents and alumni have to say about their experience.</p>
-          </div>
-          <div className="grid grid-3 testimonials-grid">
-            {testimonials.map((testimonial, idx) => (
-              <div key={idx} className="testimonial-card glass">
-                <Quote className="quote-icon" size={32} />
-                <p className="testimonial-quote">"{testimonial.quote}"</p>
-                <div className="testimonial-author-flex">
-                  <img src={testimonial.image} alt={testimonial.author} className="author-image" loading="lazy" width="50" height="50" />
-                  <div>
-                    <h4 className="author-name">{testimonial.author}</h4>
-                    <p className="author-role">{testimonial.role}</p>
-                  </div>
+          </Reveal>
+
+          <Reveal className="testimonial-carousel" delay={100}>
+            <button
+              type="button"
+              className="testimonial-nav testimonial-prev"
+              onClick={() => showTestimonial(-1)}
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={22} />
+            </button>
+
+            <div className="testimonial-card glass">
+              <Quote className="quote-icon" size={32} />
+              <p className="testimonial-quote">"{testimonials[activeTestimonial].quote}"</p>
+              <div className="testimonial-author-flex">
+                <img
+                  src={testimonials[activeTestimonial].image}
+                  alt={testimonials[activeTestimonial].author}
+                  className="author-image"
+                  loading="lazy"
+                  width="50"
+                  height="50"
+                />
+                <div>
+                  <h4 className="author-name">{testimonials[activeTestimonial].author}</h4>
+                  <p className="author-role">{testimonials[activeTestimonial].role}</p>
                 </div>
               </div>
+            </div>
+
+            <button
+              type="button"
+              className="testimonial-nav testimonial-next"
+              onClick={() => showTestimonial(1)}
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={22} />
+            </button>
+          </Reveal>
+
+          <div className="testimonial-dots" role="tablist" aria-label="Choose a testimonial">
+            {testimonials.map((testimonial, idx) => (
+              <button
+                key={testimonial.author}
+                type="button"
+                role="tab"
+                aria-selected={idx === activeTestimonial}
+                aria-label={`Show testimonial from ${testimonial.author}`}
+                className={`testimonial-dot ${idx === activeTestimonial ? 'active' : ''}`}
+                onClick={() => setActiveTestimonial(idx)}
+              />
             ))}
           </div>
         </div>
       </section>
-      
+
       {/* Call to Action */}
       <section className="section cta-section">
         <div className="container">
-          <div className="cta-box text-center relative overflow-hidden">
+          <Reveal className="cta-box text-center relative overflow-hidden">
             <img
               src="/campus-1.jpeg"
               alt=""
@@ -205,7 +250,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>

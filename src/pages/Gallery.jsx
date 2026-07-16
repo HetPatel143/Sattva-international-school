@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import PageHeader from '../components/PageHeader';
 import './Gallery.css';
 
 const Gallery = () => {
@@ -86,21 +87,12 @@ const Gallery = () => {
 
   return (
     <div className="gallery-page animate-fade-in">
-      <section className="page-header">
-        <div className="page-header-bg">
-          <img
-            src="https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=1920"
-            srcSet="https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=1920 1920w"
-            sizes="100vw"
-            alt="Gallery header"
-            fetchPriority="high"
-          />
-        </div>
-        <div className="page-header-content container">
-          <h1 className="page-title">Life at SATTVA</h1>
-          <p className="page-subtitle">A visual journey through our vibrant campus, events, and student life.</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Life at SATTVA"
+        subtitle="A visual journey through our vibrant campus, events, and student life."
+        image="https://images.unsplash.com/photo-1522199670076-2852f80289c9?auto=format&fit=crop&q=80&w=1920"
+        alt="Gallery header"
+      />
 
       {/* Quote */}
       <section className="section quote-section text-center">

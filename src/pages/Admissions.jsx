@@ -1,6 +1,8 @@
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
+import Reveal from '../components/Reveal';
 import './Admissions.css';
 
 const Admissions = () => {
@@ -18,6 +20,31 @@ const Admissions = () => {
   });
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({ firstName: '', lastName: '', email: '', phone: '' });
+
+  const namePattern = /^[A-Za-z][A-Za-z .'-]*$/;
+
+  const validateField = (id, value) => {
+    if (id === 'firstName' || id === 'lastName') {
+      const label = id === 'firstName' ? "student's first name" : "student's last name";
+      if (!value.trim()) return `Please enter the ${label}.`;
+      if (!namePattern.test(value.trim())) return 'Use letters only.';
+      return '';
+    }
+    if (id === 'email') {
+      if (!value.trim()) return 'Please enter a parent/guardian email.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address.';
+      return '';
+    }
+    if (id === 'phone') {
+      if (!value) return 'Please enter a phone number.';
+      if (value.length !== 10) return 'Enter exactly 10 digits.';
+      return '';
+    }
+    return '';
+  };
+
+  const sanitizePhone = (value) => value.replace(/\D/g, '').slice(0, 10);
 
   // Scroll to form if URL hash is present
   useEffect(() => {
@@ -31,11 +58,34 @@ const Admissions = () => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData(prev => ({ ...prev, [id]: value }));
+    const nextValue = id === 'phone' ? sanitizePhone(value) : value;
+    setFormData(prev => ({ ...prev, [id]: nextValue }));
+    if (fieldErrors[id]) {
+      setFieldErrors(prev => ({ ...prev, [id]: validateField(id, nextValue) }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { id, value } = e.target;
+    if (id in fieldErrors) {
+      setFieldErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const nextFieldErrors = {
+      firstName: validateField('firstName', formData.firstName),
+      lastName: validateField('lastName', formData.lastName),
+      email: validateField('email', formData.email),
+      phone: validateField('phone', formData.phone),
+    };
+    if (Object.values(nextFieldErrors).some(Boolean)) {
+      setFieldErrors(nextFieldErrors);
+      return;
+    }
+
     setStatus('submitting');
     setErrorMessage('');
 
@@ -84,34 +134,24 @@ const Admissions = () => {
 
   return (
     <div className="admissions-page animate-fade-in">
-      {/* Header Section */}
-      <section className="page-header">
-        <div className="page-header-bg">
-          <img
-            src="https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=1920"
-            srcSet="https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=1920 1920w"
-            sizes="100vw"
-            alt="Admissions"
-            fetchPriority="high"
-          />
-        </div>
-        <div className="page-header-content container text-center">
-          <h1 className="page-title page-title-emphasis">Admissions</h1>
-          <p className="page-subtitle page-subtitle-italic mx-auto">
-            Begin your journey of excellence at SATTVA International School.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Admissions"
+        subtitle="Begin your journey of excellence at SATTVA International School."
+        image="https://images.unsplash.com/photo-1584515933487-779824d2935f?auto=format&fit=crop&q=80&w=1920"
+        alt="Admissions"
+        emphasis
+        italicSubtitle
+      />
 
       {/* The Admissions Journey (Timeline) */}
-      <section className="section steps-section" style={{ backgroundColor: 'var(--color-bg)' }}>
+      <section className="section steps-section bg-light">
         <div className="container">
-          <div className="section-header text-center mb-5">
+          <Reveal className="section-header text-center mb-5">
             <h2 className="section-title">The Admissions Journey</h2>
-            <p className="section-subtitle text-muted mx-auto" style={{ maxWidth: '600px' }}>A thoughtful, transparent process designed to help us get to know your child.</p>
-          </div>
-          
-          <div className="timeline-container mx-auto" style={{ maxWidth: '800px', marginTop: '4rem' }}>
+            <p className="section-subtitle text-muted mx-auto max-w-600">A thoughtful, transparent process designed to help us get to know your child.</p>
+          </Reveal>
+
+          <Reveal className="timeline-container mx-auto max-w-800 mt-16" delay={100}>
             <div className="timeline-step">
               <div className="timeline-number">01</div>
               <div className="timeline-content">
@@ -135,14 +175,14 @@ const Admissions = () => {
                 <p className="text-muted">Prospective students participate in grade-level assessments and a personal interview to ensure SATTVA is the perfect fit.</p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Curriculum & Why Choose Us (Premium Split UI) */}
       <section className="section finance-section">
         <div className="container">
-          <div className="finance-wrapper">
+          <Reveal className="finance-wrapper">
             {/* Curriculum Side */}
             <div className="tuition-side">
               <h2 className="finance-heading">Our Curriculum</h2>
@@ -189,18 +229,18 @@ const Admissions = () => {
                 <p className="aid-text">A low student-teacher ratio ensures every child receives personal attention and mentorship.</p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* FAQs (Side-by-Side Layout) */}
-      <section className="section faq-section" style={{ backgroundColor: 'var(--color-bg)' }}>
+      <section className="section faq-section bg-light">
         <div className="container">
-          <div className="faq-split-layout">
+          <Reveal className="faq-split-layout">
             <div className="faq-header-side">
               <h2 className="section-title">Frequently Asked Questions</h2>
               <p className="text-muted mt-4">Find answers to the most common questions about joining our community.</p>
-              <button className="btn btn-outline mt-5" style={{ marginTop: '2rem' }}>Contact Admissions</button>
+              <button className="btn btn-subtle mt-8">Contact Admissions</button>
             </div>
             
             <div className="faq-accordion-side">
@@ -223,12 +263,12 @@ const Admissions = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Elegant Editorial Application Form */}
-      <section id="apply-form" ref={formRef} className="section form-section" style={{ padding: 0 }}>
+      <section id="apply-form" ref={formRef} className="section form-section section-flush">
         <div className="editorial-form-split">
           <div className="form-image-side">
             <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000" alt="Students studying" />
@@ -265,8 +305,7 @@ const Admissions = () => {
                         message: ''
                       });
                     }} 
-                    className="btn btn-primary"
-                    style={{ marginTop: '2rem' }}
+                    className="btn btn-primary mt-8"
                   >
                     Submit Another Inquiry
                   </button>
@@ -274,48 +313,74 @@ const Admissions = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="premium-form">
                   <div className="form-row">
-                    <div className="input-group">
-                      <input 
-                        type="text" 
-                        id="firstName" 
+                    <div className={`input-group${fieldErrors.firstName ? ' has-error' : ''}`}>
+                      <input
+                        type="text"
+                        id="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
-                        required 
+                        onBlur={handleBlur}
+                        aria-invalid={Boolean(fieldErrors.firstName)}
+                        aria-describedby={fieldErrors.firstName ? 'firstName-error' : undefined}
+                        required
                       />
                       <label htmlFor="firstName">Student's First Name</label>
+                      {fieldErrors.firstName && (
+                        <span id="firstName-error" className="field-error">{fieldErrors.firstName}</span>
+                      )}
                     </div>
-                    <div className="input-group">
-                      <input 
-                        type="text" 
-                        id="lastName" 
+                    <div className={`input-group${fieldErrors.lastName ? ' has-error' : ''}`}>
+                      <input
+                        type="text"
+                        id="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
-                        required 
+                        onBlur={handleBlur}
+                        aria-invalid={Boolean(fieldErrors.lastName)}
+                        aria-describedby={fieldErrors.lastName ? 'lastName-error' : undefined}
+                        required
                       />
                       <label htmlFor="lastName">Student's Last Name</label>
+                      {fieldErrors.lastName && (
+                        <span id="lastName-error" className="field-error">{fieldErrors.lastName}</span>
+                      )}
                     </div>
                   </div>
-                  
+
                   <div className="form-row">
-                    <div className="input-group">
-                      <input 
-                        type="email" 
-                        id="email" 
+                    <div className={`input-group${fieldErrors.email ? ' has-error' : ''}`}>
+                      <input
+                        type="email"
+                        id="email"
                         value={formData.email}
                         onChange={handleChange}
-                        required 
+                        onBlur={handleBlur}
+                        aria-invalid={Boolean(fieldErrors.email)}
+                        aria-describedby={fieldErrors.email ? 'email-error' : undefined}
+                        required
                       />
                       <label htmlFor="email">Parent/Guardian Email</label>
+                      {fieldErrors.email && (
+                        <span id="email-error" className="field-error">{fieldErrors.email}</span>
+                      )}
                     </div>
-                    <div className="input-group">
-                      <input 
-                        type="tel" 
-                        id="phone" 
+                    <div className={`input-group${fieldErrors.phone ? ' has-error' : ''}`}>
+                      <input
+                        type="tel"
+                        id="phone"
+                        inputMode="numeric"
+                        maxLength={10}
                         value={formData.phone}
                         onChange={handleChange}
-                        required 
+                        onBlur={handleBlur}
+                        aria-invalid={Boolean(fieldErrors.phone)}
+                        aria-describedby={fieldErrors.phone ? 'phone-error' : undefined}
+                        required
                       />
                       <label htmlFor="phone">Phone Number</label>
+                      {fieldErrors.phone && (
+                        <span id="phone-error" className="field-error">{fieldErrors.phone}</span>
+                      )}
                     </div>
                   </div>
 
@@ -335,30 +400,30 @@ const Admissions = () => {
                     <label htmlFor="grade">Applying for Grade Level</label>
                   </div>
                   
-                  <div className="input-group full-width" style={{ marginTop: '2rem' }}>
-                    <textarea 
-                      id="message" 
-                      rows={3} 
+                  <div className="input-group full-width mt-8">
+                    <textarea
+                      id="message"
+                      rows={3}
                       value={formData.message}
                       onChange={handleChange}
                       required
                     ></textarea>
                     <label htmlFor="message">Briefly tell us why you are interested in SATTVA</label>
                   </div>
-                  
+
                   {status === 'error' && (
-                    <div className="form-error-message" style={{ color: 'var(--color-accent)', margin: '0 0 1.5rem 0', fontWeight: '500', fontSize: '0.95rem' }}>
+                    <div className="form-error-message">
                       {errorMessage}
                     </div>
                   )}
 
-                  <button type="submit" className="btn btn-primary submit-btn" disabled={status === 'submitting'} style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <button type="submit" className="btn btn-primary submit-btn" disabled={status === 'submitting'}>
                     {status === 'submitting' ? (
                       <span className="spinner-container">
                         Sending Inquiry... <span className="spinner"></span>
                       </span>
                     ) : (
-                      <>Submit Inquiry <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} /></>
+                      <>Submit Inquiry <ArrowRight size={18} className="ml-2" /></>
                     )}
                   </button>
                 </form>

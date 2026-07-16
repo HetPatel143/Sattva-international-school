@@ -1,4 +1,6 @@
 import { Award, Target, Heart, Shield, CheckCircle, Mic2, PartyPopper, Flag } from 'lucide-react';
+import PageHeader from '../components/PageHeader';
+import Reveal from '../components/Reveal';
 import './About.css';
 
 const About = () => {
@@ -24,27 +26,17 @@ const About = () => {
 
   return (
     <div className="about-page animate-fade-in">
-      {/* Page Header */}
-      <section className="page-header">
-        <div className="page-header-bg">
-           <img
-             src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1920"
-             srcSet="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1920 1920w"
-             sizes="100vw"
-             alt="About SATTVA"
-             fetchPriority="high"
-           />
-        </div>
-        <div className="page-header-content container">
-          <h1 className="page-title">About SATTVA School</h1>
-          <p className="page-subtitle">A legacy of excellence, character building, and holistic education.</p>
-        </div>
-      </section>
+      <PageHeader
+        title="About SATTVA School"
+        subtitle="A legacy of excellence, character building, and holistic education."
+        image="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1920"
+        alt="About SATTVA"
+      />
 
       {/* Mission & Vision */}
       <section className="section mission-vision">
         <div className="container">
-          <div className="grid grid-2">
+          <Reveal className="grid grid-2">
             <div className="mission-card glass hover-lift">
               <h2 className="mv-title text-gradient">Our Mission</h2>
               <p>To provide a nurturing and intellectually stimulating environment that empowers students to reach their highest potential, develop strong moral character, and become responsible global citizens.</p>
@@ -53,18 +45,18 @@ const About = () => {
               <h2 className="mv-title text-gradient">Our Vision</h2>
               <p>To be recognized globally as a center of educational excellence that fosters innovation, critical thinking, and a lifelong love for learning in every student.</p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* History Timeline */}
       <section className="section history-section bg-light">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Our Journey</h2>
             <p className="section-subtitle">A young institution, growing with purpose since 2022.</p>
-          </div>
-          <div className="timeline">
+          </Reveal>
+          <Reveal className="timeline" delay={100}>
             {history.map((event, idx) => (
               <div key={idx} className="timeline-item">
                 <div className="timeline-year text-gradient">{event.year}</div>
@@ -74,19 +66,19 @@ const About = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Core Values */}
       <section className="section core-values">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Our Core Values</h2>
             <p className="section-subtitle">The guiding principles that shape our school culture.</p>
-          </div>
-          
-          <div className="grid grid-2 grid-4-lg values-grid">
+          </Reveal>
+
+          <Reveal className="grid grid-2 grid-4-lg values-grid" delay={100}>
             {values.map((val, idx) => (
               <div key={idx} className="value-card text-center glass hover-lift">
                 <div className={`value-icon-wrapper mx-auto tile-${val.tile}`}>
@@ -96,18 +88,18 @@ const About = () => {
                 <p className="value-desc">{val.desc}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Life at SATTVA */}
       <section className="section life-section bg-light">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Life at SATTVA</h2>
             <p className="section-subtitle">Beyond the classroom — the moments that shape our students.</p>
-          </div>
-          <div className="grid grid-2 grid-3-lg">
+          </Reveal>
+          <Reveal className="grid grid-2 grid-3-lg" delay={100}>
             {lifeAtSattva.map((item, idx) => (
               <div key={idx} className="value-card text-center glass hover-lift">
                 <div className={`value-icon-wrapper mx-auto tile-${item.tile}`}>
@@ -117,7 +109,7 @@ const About = () => {
                 <p className="value-desc">{item.desc}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 

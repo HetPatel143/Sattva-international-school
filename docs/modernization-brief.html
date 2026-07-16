@@ -1,0 +1,380 @@
+<title>Sattva — Modernization Brief</title>
+<style>
+  :root {
+    /* ---- Proposed NEW Sattva identity: "New Classic" — trustworthy, modern, still heritage-rooted ---- */
+    --navy: #14213D;        /* replaces warm umber #3D2E23 as primary */
+    --navy-light: #24365C;
+    --brass: #B8905A;       /* refined, less "caramel" than old #C49A70 */
+    --brass-light: #D9BD93;
+    --crimson: #A23B42;     /* deepened from logo's #C7414A */
+    --paper: #FAF8F4;       /* cooler, more "paper" than old #FDFBF7 */
+    --surface: #FFFFFF;
+    --ink: #1B2430;
+    --muted: #5B6472;
+    --border: #E6E1D6;
+
+    /* ---- Old heritage identity, shown for before/after only ---- */
+    --old-umber: #3D2E23;
+    --old-gold: #C49A70;
+    --old-cream: #FDFBF7;
+
+    --bg: var(--paper);
+    --surface-2: #F1EDE3;
+    --ink-soft: var(--muted);
+    --ink-faint: #8B93A0;
+    --line: var(--border);
+    --line-soft: #EFEAE0;
+    --code-bg: #EFEAE0;
+    --shadow-card: 0 1px 2px rgba(20,33,61,.05), 0 24px 50px -28px rgba(184,144,90,.35);
+    --shadow-navy: 0 20px 45px -22px rgba(20,33,61,.45);
+
+    --maxw: 1120px;
+    --radius-card: 10px;
+    --radius-btn: 8px;
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E1420; --surface: #151C2B; --surface-2: #1B2333;
+      --ink: #EAEDF3; --ink-soft: #A7B0C0; --ink-faint: #6E7789;
+      --line: #263048; --line-soft: #1B2333; --code-bg: #1B2333;
+      --shadow-card: 0 1px 2px rgba(0,0,0,.4), 0 26px 55px -28px rgba(0,0,0,.85);
+      --shadow-navy: 0 20px 45px -22px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1420; --surface: #151C2B; --surface-2: #1B2333;
+    --ink: #EAEDF3; --ink-soft: #A7B0C0; --ink-faint: #6E7789;
+    --line: #263048; --line-soft: #1B2333; --code-bg: #1B2333;
+    --shadow-card: 0 1px 2px rgba(0,0,0,.4), 0 26px 55px -28px rgba(0,0,0,.85);
+    --shadow-navy: 0 20px 45px -22px rgba(0,0,0,.7);
+  }
+  :root[data-theme="light"] {
+    --bg: var(--paper); --surface: #FFFFFF; --surface-2: #F1EDE3;
+    --ink: #1B2430; --ink-soft: #5B6472; --ink-faint: #8B93A0;
+    --line: #E6E1D6; --line-soft: #EFEAE0; --code-bg: #EFEAE0;
+    --shadow-card: 0 1px 2px rgba(20,33,61,.05), 0 24px 50px -28px rgba(184,144,90,.35);
+    --shadow-navy: 0 20px 45px -22px rgba(20,33,61,.45);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  .masthead { position: relative; overflow: hidden; border-bottom: 1px solid var(--line);
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-light) 55%, var(--brass) 160%); }
+  .masthead .wrap { padding: 88px 24px 60px; }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--brass-light); margin: 0 0 20px; }
+  h1.title { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.1; letter-spacing: -.01em; margin: 0 0 20px; text-wrap: balance; color: #fff; }
+  .lede { font-size: 1.12rem; color: rgba(255,255,255,.82); max-width: 70ch; margin: 0; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .tag { font-size: 12.5px; font-weight: 600; padding: 6px 14px; border-radius: var(--radius-btn); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.9); }
+  .tag b { color: var(--brass-light); }
+
+  section.block { padding: 58px 0; border-bottom: 1px solid var(--line-soft); }
+  .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); margin: 0 0 12px; }
+  .kicker .num { font-family: var(--font-mono); font-size: 11px; background: var(--code-bg); padding: 2px 7px; border-radius: 6px; color: var(--ink-faint); }
+  h2.sect { font-family: var(--font-display); font-weight: 600; letter-spacing: -.01em; font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 10px; text-wrap: balance; }
+  .sect-intro { color: var(--ink-soft); max-width: 74ch; margin: 0 0 28px; font-size: 1.02rem; }
+  h3.sub { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin: 0 0 12px; letter-spacing: -.005em; }
+
+  code, .mono { font-family: var(--font-mono); font-size: .84em; }
+  .chip-code { background: var(--code-bg); padding: 2px 7px; border-radius: 6px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 24px; box-shadow: var(--shadow-card); }
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 720px){ .cols-2 { grid-template-columns: 1fr; } }
+
+  /* before/after swatches */
+  .ba-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: center; }
+  @media (max-width: 640px){ .ba-grid { grid-template-columns: 1fr; } }
+  .ba-arrow { font-size: 1.4rem; color: var(--brass); text-align: center; }
+  .ba-col-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); margin-bottom: 10px; }
+  .swatch-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .sw { flex: 1; min-width: 90px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+  .sw .chip { height: 56px; }
+  .sw .lbl { padding: 6px 8px 2px; font-size: .68rem; font-weight: 600; }
+  .sw .hex { font-family: var(--font-mono); font-size: .62rem; color: var(--ink-faint); padding: 0 8px 6px; }
+
+  ul.clean { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  ul.clean li { position: relative; padding-left: 24px; color: var(--ink-soft); font-size: .95rem; }
+  ul.clean li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 7px; height: 7px; border-radius: 2px; background: var(--brass); }
+  ul.clean li b { color: var(--ink); font-weight: 600; }
+
+  .callout { border-left: 3px solid var(--brass); background: var(--surface-2); padding: 16px 20px; border-radius: 0 10px 10px 0; margin: 18px 0; }
+  .callout p { margin: 0; font-size: .92rem; color: var(--ink-soft); }
+  .callout b { color: var(--ink); }
+  .callout.keep { border-left-color: #4C7A50; }
+  .callout.crimson { border-left-color: var(--crimson); }
+
+  /* borrow cards */
+  .borrow-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 22px; box-shadow: var(--shadow-card); margin-bottom: 16px; }
+  .borrow-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+  .borrow-num { font-family: var(--font-mono); font-weight: 700; font-size: .78rem; color: #fff; background: var(--navy); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .borrow-title { font-family: var(--font-display); font-weight: 600; font-size: 1.08rem; margin: 0; }
+  .borrow-tag { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: 3px 11px; border-radius: 999px; margin-left: auto; white-space: nowrap; }
+  .borrow-tag.p1 { background: #FEE2E2; color: #A23B42; }
+  .borrow-tag.p2 { background: #FEF3C7; color: #92650F; }
+  .borrow-tag.p3 { background: #E6E1D6; color: #5B6472; }
+  :root[data-theme="dark"] .borrow-tag.p1 { background: #2C1315; color: #F0A3A8; }
+  :root[data-theme="dark"] .borrow-tag.p2 { background: #2A2210; color: #FBBF24; }
+  :root[data-theme="dark"] .borrow-tag.p3 { background: #263048; color: #A7B0C0; }
+  .borrow-body { color: var(--ink-soft); font-size: .93rem; margin: 0 0 12px; }
+  .borrow-adapt { background: var(--surface-2); border-radius: 10px; padding: 12px 16px; font-size: .88rem; color: var(--ink); }
+  .borrow-adapt b { color: var(--navy); }
+  :root[data-theme="dark"] .borrow-adapt b { color: var(--brass-light); }
+
+  .tbl-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-card); }
+  table { border-collapse: collapse; width: 100%; font-size: .87rem; min-width: 480px; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  th { background: var(--surface-2); font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); }
+  tr:last-child td { border-bottom: none; }
+
+  /* type/shape demo */
+  .demo-headline { font-family: var(--font-display); font-weight: 600; }
+  .btn-navy { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 13px; padding: 11px 24px; border-radius: var(--radius-btn); background: var(--navy); color: #fff; box-shadow: var(--shadow-navy); }
+  .btn-brass-outline { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; padding: 10px 22px; border-radius: var(--radius-btn); background: transparent; border: 1.5px solid var(--brass); color: var(--brass); }
+  .btn-ghost-new { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 600; font-size: 13px; padding: 10px 18px; color: var(--navy); }
+  :root[data-theme="dark"] .btn-ghost-new { color: var(--brass-light); }
+
+  .toggle { position: fixed; top: 16px; right: 16px; z-index: 50; background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+    font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 999px; cursor: pointer; box-shadow: var(--shadow-card); font-family: var(--font-body); }
+
+  .roadmap-phase { display: flex; gap: 16px; margin-bottom: 20px; }
+  .phase-marker { width: 34px; height: 34px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: .95rem; flex-shrink: 0; }
+  .phase-body h4 { font-family: var(--font-display); font-weight: 600; margin: 4px 0 6px; font-size: 1.02rem; }
+  .phase-body p { margin: 0; color: var(--ink-soft); font-size: .9rem; }
+
+  footer { padding: 40px 0 60px; color: var(--ink-faint); font-size: .82rem; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<button class="toggle" id="themeToggle" aria-label="Toggle colour theme">◐ Theme</button>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Modernization Brief · Not Yet Implemented</p>
+    <h1 class="title">Sattva, reconsidered: from Heritage to New Classic</h1>
+    <p class="lede">A plan to move Sattva's visual identity forward — more advanced, more trustworthy, still unmistakably a serious school — by borrowing proven structural ideas from Arpanam's build, never its playful colour or preschool register. This is a list to review, not a diff to merge.</p>
+    <div class="meta-row">
+      <span class="tag">Direction · <b>New Classic</b></span>
+      <span class="tag">Keep · <b>Playfair + gold heritage cue</b></span>
+      <span class="tag">Shift · <b>umber → navy, sharp → refined</b></span>
+      <span class="tag">Source · <b>Arpanam's systems, not its palette</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 00 DIRECTION -->
+  <section class="block">
+    <p class="kicker"><span class="num">00</span> The Direction</p>
+    <h2 class="sect">What "new classic, trustworthy" means here</h2>
+    <p class="sect-intro">Sattva's current look — warm umber brown, sharp 2px corners, Playfair Display in heavy uppercase — reads as <i>heritage</i>: dignified, a little old-world. The brief is to keep the dignity and lose the "old" — swap warm-brown for a cooler, more institutional navy; keep the gold but refine it; keep the serif but stop shouting in uppercase; and let elevation and motion do more of the "advanced" work, the way Arpanam's brand-tinted shadows and choreographed reveals do. The result should look like a school that modernized deliberately, not one that lost its identity.</p>
+    <div class="panel">
+      <div class="ba-grid">
+        <div>
+          <div class="ba-col-label">Now — Heritage</div>
+          <p class="demo-headline" style="font-size:1.7rem;color:var(--old-umber);text-transform:uppercase;letter-spacing:2px;margin:0">Excellence in Education</p>
+        </div>
+        <div class="ba-arrow">→</div>
+        <div>
+          <div class="ba-col-label">Proposed — New Classic</div>
+          <p class="demo-headline" style="font-size:1.9rem;color:var(--navy);margin:0">Excellence in Education</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 PALETTE SHIFT -->
+  <section class="block">
+    <p class="kicker"><span class="num">01</span> Palette Shift</p>
+    <h2 class="sect">Warm umber → institutional navy, gold refined</h2>
+    <p class="sect-intro">The gold stays — it's the one irreplaceable link to the logo and to "heritage." Everything around it cools down: brown becomes navy (the colour of banks, universities, and law firms — the universal shorthand for "trustworthy"), and the cream ground gets slightly cooler so the gold reads as an accent, not a match.</p>
+    <div class="cols-2">
+      <div class="panel">
+        <div class="ba-col-label">Now</div>
+        <div class="swatch-row">
+          <div class="sw"><div class="chip" style="background:#3D2E23"></div><div class="lbl">Primary Umber</div><div class="hex">#3D2E23</div></div>
+          <div class="sw"><div class="chip" style="background:#C49A70"></div><div class="lbl">Gold</div><div class="hex">#C49A70</div></div>
+          <div class="sw"><div class="chip" style="background:#FDFBF7;border-bottom:1px solid #eee"></div><div class="lbl">Cream</div><div class="hex">#FDFBF7</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ba-col-label">Proposed</div>
+        <div class="swatch-row">
+          <div class="sw"><div class="chip" style="background:#14213D"></div><div class="lbl">Ink Navy</div><div class="hex">#14213D</div></div>
+          <div class="sw"><div class="chip" style="background:#B8905A"></div><div class="lbl">Refined Brass</div><div class="hex">#B8905A</div></div>
+          <div class="sw"><div class="chip" style="background:#FAF8F4;border-bottom:1px solid #eee"></div><div class="lbl">Paper</div><div class="hex">#FAF8F4</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout"><p><b>Logo mark stays untouched:</b> the crimson (#C7414A → nudge to #A23B42 for weight) and the green/purple/blue "tile" icon colours keep doing exactly what they do now — decorate icons only. Only the <i>dominant, structural</i> colour changes.</p></div>
+  </section>
+
+  <!-- 02 TYPE -->
+  <section class="block">
+    <p class="kicker"><span class="num">02</span> Typography</p>
+    <h2 class="sect">Same serif, quieter voice</h2>
+    <div class="cols-2">
+      <div class="panel">
+        <h3 class="sub">Keep</h3>
+        <ul class="clean">
+          <li><b>Playfair Display</b> for every headline — it's the single strongest "trustworthy institution" signal already in place.</li>
+          <li>Italic serif subtitles for legend-quote banners — a genuine voice, don't lose it.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 class="sub">Refine</h3>
+        <ul class="clean">
+          <li>Drop the hero from <b>uppercase + 4px tracking</b> to sentence case — monumental-plaque energy reads dated next to a modern layout.</li>
+          <li>Cap hero size nearer <b>64px</b> than 80px; let whitespace carry weight instead of raw scale.</li>
+          <li>Borrow Arpanam's discipline of <b>one clear scale</b>, applied consistently rather than per-page inline overrides (Contact.jsx currently sets font sizes via inline <span class="mono">style=</span>).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 SHAPE + ELEVATION -->
+  <section class="block">
+    <p class="kicker"><span class="num">03</span> Shape &amp; Elevation</p>
+    <h2 class="sect">Soften the corners, add brand-tinted depth</h2>
+    <div class="cols-2">
+      <div class="panel">
+        <h3 class="sub">Radius: 2–4px → 8–10px</h3>
+        <p style="color:var(--ink-soft);font-size:.92rem;margin:0 0 14px">Fully sharp corners read as stern/old-world. A modest 8–10px radius (never a pill — that would tip into Arpanam's playful register) reads as considered and current without losing formality.</p>
+        <div style="display:flex;gap:16px;align-items:flex-end">
+          <div style="text-align:center"><div style="width:64px;height:50px;background:var(--surface-2);border:1px solid var(--line);border-radius:2px"></div><div class="chip-code" style="margin-top:8px;display:inline-block">now: 2px</div></div>
+          <div style="text-align:center"><div style="width:64px;height:50px;background:var(--surface-2);border:1px solid var(--line);border-radius:9px"></div><div class="chip-code" style="margin-top:8px;display:inline-block">new: 9px</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3 class="sub">Elevation: neutral → brass-tinted</h3>
+        <p style="color:var(--ink-soft);font-size:.92rem;margin:0 0 14px">This is Arpanam's single best trick, ported to Sattva's palette: shadows mixed from the brand colour instead of flat black. It's the fastest way to make a card feel "advanced" rather than "flat."</p>
+        <div style="display:flex;gap:20px">
+          <div style="width:90px;height:60px;background:var(--surface);border:1px solid var(--line);border-radius:9px;box-shadow:0 1px 2px rgba(0,0,0,.05)"></div>
+          <div style="width:90px;height:60px;background:var(--surface);border:1px solid var(--line);border-radius:9px;box-shadow:var(--shadow-card)"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 WHAT TO BORROW -->
+  <section class="block">
+    <p class="kicker"><span class="num">04</span> What to Take from Arpanam</p>
+    <h2 class="sect">Ten specific things — each adapted to New Classic, not copied</h2>
+    <p class="sect-intro">Priority tags: <span class="borrow-tag p1" style="margin:0 6px 0 0">Phase 1</span>quick, high-leverage · <span class="borrow-tag p2" style="margin:0 6px 0 0">Phase 2</span>meaningful build · <span class="borrow-tag p3" style="margin:0 6px 0 0">Phase 3</span>larger investment.</p>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">1</span><h3 class="borrow-title">A reusable page-hero component</h3><span class="borrow-tag p1">Phase 1</span></div>
+      <p class="borrow-body">Arpanam has one <span class="mono">PageHero</span> component every interior page calls with different props. Sattva hand-writes the <span class="mono">page-header</span> JSX block fresh in every page file (confirmed in <span class="mono">Gallery.jsx</span> and <span class="mono">Contact.jsx</span>) — same markup, copy-pasted five times.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> extract a <span class="mono">&lt;PageHeader title subtitle image emphasis /&gt;</span> component in navy-and-brass styling; every page shrinks to a one-line call, and future header changes happen once.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">2</span><h3 class="borrow-title">Field-level form validation</h3><span class="borrow-tag p1">Phase 1</span></div>
+      <p class="borrow-body">Arpanam's contact form sanitises input live and shows a per-field error tied via <span class="mono">aria-describedby</span>/<span class="mono">aria-invalid</span>. Sattva's <span class="mono">Contact.jsx</span> relies only on native <span class="mono">required</span> plus one global error banner — a user who mistypes an email only finds out after submitting.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> add per-field validation (email format, phone digits) with an inline message under the underline input, in the same navy-on-crimson error colour already defined for <span class="mono">--color-accent</span>.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">3</span><h3 class="borrow-title">A persistent mobile conversion bar</h3><span class="borrow-tag p1">Phase 1</span></div>
+      <p class="borrow-body">Arpanam keeps a sticky bottom bar (Call / Admissions) visible on mobile at all times. Sattva's only mobile CTA lives inside the hamburger drawer — once closed, there's no persistent "Apply Now" affordance while scrolling.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> a slim fixed bottom bar in navy with a brass-outline "Apply Now" and a phone icon, matching the drawer's existing colour logic (cream when scrolled, dark over hero).</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">4</span><h3 class="borrow-title">Scroll-triggered reveal, not mount-only fade</h3><span class="borrow-tag p2">Phase 2</span></div>
+      <p class="borrow-body">Arpanam's <span class="mono">Reveal</span> component uses <span class="mono">whileInView</span> — content animates in as the user scrolls to it. Sattva's <span class="mono">animate-fade-in</span> + <span class="mono">delay-100/200/300</span> classes fire once on page mount, so anything below the fold has already "finished animating" before it's ever seen.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> swap the CSS keyframe approach for a small <span class="mono">IntersectionObserver</span> hook (no need for Framer Motion — React 19 + a 20-line hook is enough) that adds the existing <span class="mono">.animate-fade-in</span> class when a section enters the viewport.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">5</span><h3 class="borrow-title">An interactive testimonial slider</h3><span class="borrow-tag p2">Phase 2</span></div>
+      <p class="borrow-body">Arpanam's testimonials are a real slider — prev/next controls, star ratings, one quote in focus at a time. Sattva's testimonial section is a static grid that only becomes a swipe carousel below 768px, with no way to browse more than what's visible on desktop.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> add prev/next arrow buttons (already have the icon set via lucide-react) to cycle one <span class="mono">testimonial-card</span> at a time on desktop, styled in navy/brass — keep the existing card design entirely, just add navigation.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">6</span><h3 class="borrow-title">A wider, systemized button vocabulary</h3><span class="borrow-tag p2">Phase 2</span></div>
+      <p class="borrow-body">Arpanam ships 7 named button variants for different weights of action. Sattva has two: <span class="mono">.btn-primary</span> and <span class="mono">.btn-outline</span> — every CTA on the site is one of these two, regardless of how important it actually is.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> add a <span class="mono">.btn-ghost</span> (text-only, navy, for in-card links like "Read More") and a <span class="mono">.btn-subtle</span> (soft brass-tinted background, for secondary-but-not-throwaway actions) — two additions, not seven, since Sattva's simpler action model doesn't need Arpanam's full range.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">7</span><h3 class="borrow-title">Named, reusable elevation tokens</h3><span class="borrow-tag p2">Phase 2</span></div>
+      <p class="borrow-body">Arpanam defines <span class="mono">shadow-soft</span> / <span class="mono">shadow-glow</span> / <span class="mono">shadow-card</span> once in its Tailwind config and reuses them everywhere. Sattva already has a shadow scale (<span class="mono">--shadow-sm</span> through <span class="mono">--shadow-xl</span>) but it's neutral-black only — this pairs directly with item 03 above.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> add <span class="mono">--shadow-brass</span> and <span class="mono">--shadow-navy</span> custom properties alongside the existing neutral scale, and reach for them specifically on hover states and hero CTAs.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">8</span><h3 class="borrow-title">Responsive images with reserved space</h3><span class="borrow-tag p3">Phase 3</span></div>
+      <p class="borrow-body">Arpanam gets this for free from <span class="mono">next/image</span> (auto width/height, no layout shift). Sattva hand-writes <span class="mono">srcSet</span>/<span class="mono">sizes</span> correctly, but images have no reserved <span class="mono">aspect-ratio</span>, so slow connections see visible layout jump as gallery/hero images load in.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> add <span class="mono">aspect-ratio</span> to <span class="mono">.gallery-item</span>, <span class="mono">.hero-image</span>, and <span class="mono">.news-image-wrapper</span> containers so space is reserved before the image arrives.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">9</span><h3 class="borrow-title">Retint the icon "tile" colours to the new palette</h3><span class="borrow-tag p3">Phase 3</span></div>
+      <p class="borrow-body">Not literally from Arpanam, but the same principle Arpanam applies (decoration hues stay contained and coherent): Sattva's <span class="mono">tile-green/purple/blue</span> icon backgrounds were tuned against warm umber — against navy they'll read colder and slightly mismatched.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> shift each tile hue slightly cooler/deeper to sit comfortably next to navy — same logo-derived hues, retuned for the new ground, not replaced.</div>
+    </div>
+
+    <div class="borrow-card">
+      <div class="borrow-head"><span class="borrow-num">10</span><h3 class="borrow-title">Consolidate inline styles into the token system</h3><span class="borrow-tag p3">Phase 3</span></div>
+      <p class="borrow-body">Arpanam's Tailwind config means every spacing/colour/radius decision routes through one file. Sattva's CSS custom properties do the same in principle, but several pages (e.g. <span class="mono">Contact.jsx</span>'s <span class="mono">style={{ fontSize: '2rem' }}</span>) bypass the token system with inline overrides.</p>
+      <div class="borrow-adapt"><b>Adapt:</b> sweep inline <span class="mono">style=</span> props back into the relevant <span class="mono">.css</span> files as real classes — makes the new navy/brass rollout a find-and-replace instead of a page-by-page hunt.</div>
+    </div>
+  </section>
+
+  <!-- 05 KEEP AS-IS -->
+  <section class="block">
+    <p class="kicker"><span class="num">05</span> Protect These</p>
+    <h2 class="sect">Where Sattva is already ahead of Arpanam</h2>
+    <p class="sect-intro">Modernizing shouldn't mean regressing. Three things Sattva already does better — don't let a redesign accidentally lose them.</p>
+    <div class="callout keep"><p><b>Global accessibility guard:</b> the site-wide <span class="mono">*:focus-visible</span> ring and <span class="mono">prefers-reduced-motion</span> block in <span class="mono">index.css</span> are stronger defaults than Arpanam has today. Keep them exactly as they are through the redesign.</p></div>
+    <div class="callout keep"><p><b>Gallery keyboard + touch support:</b> arrow-key navigation, Escape, a real focus trap, and swipe gestures in the lightbox. Restyle the chrome, never the interaction logic.</p></div>
+    <div class="callout keep"><p><b>Async form submission with real feedback:</b> the spinner-then-checkmark success state on Contact/Admissions is already the interaction pattern Arpanam is missing. Only add validation on top of it — don't replace it.</p></div>
+  </section>
+
+  <!-- 06 ROADMAP -->
+  <section class="block" style="border-bottom:none">
+    <p class="kicker"><span class="num">06</span> Suggested Sequence</p>
+    <h2 class="sect">Three phases, not one big rewrite</h2>
+    <div class="roadmap-phase">
+      <div class="phase-marker">1</div>
+      <div class="phase-body"><h4>Palette + quick wins</h4><p>Swap the umber/gold/cream tokens for navy/brass/paper across <span class="mono">index.css</span>; add the page-hero component, sticky mobile CTA, and per-field form validation. This alone changes the site's temperature without touching layout.</p></div>
+    </div>
+    <div class="roadmap-phase">
+      <div class="phase-marker">2</div>
+      <div class="phase-body"><h4>Interaction depth</h4><p>Scroll-triggered reveals, the testimonial slider, expanded button set, and brass/navy elevation tokens — the site starts to <i>feel</i> as advanced as it now looks.</p></div>
+    </div>
+    <div class="roadmap-phase">
+      <div class="phase-marker">3</div>
+      <div class="phase-body"><h4>Polish &amp; consolidation</h4><p>Image aspect-ratio boxes, retinted icon tiles, and sweeping inline styles back into the token system — the maintainability pass that makes future changes cheap.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    Sattva International School · Modernization brief informed by Arpanam Kids School's component patterns. Nothing in this document has been implemented — it is a plan for review. Toggle theme, top-right.
+  </footer>
+</main>
+
+<script>
+  (function(){
+    var btn = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    function current(){
+      var set = root.getAttribute('data-theme');
+      if (set) return set;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    btn.addEventListener('click', function(){
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+    });
+  })();
+</script>

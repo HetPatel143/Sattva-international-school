@@ -1,4 +1,6 @@
 import { BookOpen, Backpack, FlaskConical, GraduationCap, Palette, Music2, Swords, Dumbbell, Activity, Flower2, Monitor, Globe2, Calendar as CalendarIcon, HeartHandshake } from 'lucide-react';
+import PageHeader from '../components/PageHeader';
+import Reveal from '../components/Reveal';
 import './Academics.css';
 
 const Academics = () => {
@@ -39,22 +41,12 @@ const Academics = () => {
 
   return (
     <div className="academics-page animate-fade-in">
-      {/* Header Section */}
-      <section className="page-header">
-        <div className="page-header-bg">
-          <img
-            src="https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=1920"
-            srcSet="https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=1920 1920w"
-            sizes="100vw"
-            alt="Academics"
-            fetchPriority="high"
-          />
-        </div>
-        <div className="page-header-content container">
-          <h1 className="page-title">Academics at SATTVA</h1>
-          <p className="page-subtitle">A GSEB-affiliated curriculum from JrKG to Std 12, offered in both English and Gujarati medium.</p>
-        </div>
-      </section>
+      <PageHeader
+        title="Academics at SATTVA"
+        subtitle="A GSEB-affiliated curriculum from JrKG to Std 12, offered in both English and Gujarati medium."
+        image="https://images.unsplash.com/photo-1519337265831-2811a7fcaeb6?auto=format&fit=crop&q=80&w=1920"
+        alt="Academics"
+      />
 
       {/* Quote */}
       <section className="section quote-section text-center">
@@ -69,11 +61,11 @@ const Academics = () => {
       {/* Programs Grid */}
       <section className="section programs-section">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Our Academic Programs</h2>
             <p className="section-subtitle">A balanced blend of theory, practice, and creativity.</p>
-          </div>
-          <div className="grid grid-2 grid-4-lg programs-grid">
+          </Reveal>
+          <Reveal className="grid grid-2 grid-4-lg programs-grid" delay={100}>
             {programs.map((p, i) => (
               <div key={i} className="program-card glass hover-lift">
                 <div className="program-icon-wrapper">
@@ -83,20 +75,20 @@ const Academics = () => {
                 <p className="program-desc">{p.desc}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Co-curriculars Section */}
       <section className="section cocurricular-section bg-light">
         <div className="container">
-          <div className="grid grid-2" style={{ alignItems: 'center' }}>
+          <Reveal className="grid grid-2 items-center">
             <div>
               <h2 className="section-title">Beyond the Classroom</h2>
-              <p className="section-subtitle" style={{ marginBottom: '2rem' }}>Education at SATTVA extends beyond textbooks. Our co-curricular programs are designed to discover hidden talents and build leadership skills.</p>
+              <p className="section-subtitle mb-8">Education at SATTVA extends beyond textbooks. Our co-curricular programs are designed to discover hidden talents and build leadership skills.</p>
               <div className="grid grid-2">
                 {cocurriculars.map((item, idx) => (
-                  <div key={idx} className="cocurricular-item glass flex-center" style={{ gap: '1rem', padding: '1rem', borderRadius: 'var(--radius-md)' }}>
+                  <div key={idx} className="cocurricular-item glass flex-center">
                     <div className="text-primary">{item.icon}</div>
                     <span className="font-semibold">{item.title}</span>
                   </div>
@@ -106,18 +98,18 @@ const Academics = () => {
             <div className="cocurricular-image-wrapper">
                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800" alt="Students in library" className="rounded-image shadow-xl" loading="lazy" />
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Student Support */}
       <section className="section support-section">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">Student Support Services</h2>
             <p className="section-subtitle">We ensure every student has the resources they need to succeed.</p>
-          </div>
-          <div className="grid grid-3">
+          </Reveal>
+          <Reveal className="grid grid-3" delay={100}>
             {supportServices.map((service, idx) => (
               <div key={idx} className="support-card glass text-center hover-lift">
                 <div className="support-icon mx-auto text-primary mb-4">{service.icon}</div>
@@ -125,18 +117,18 @@ const Academics = () => {
                 <p className="support-desc">{service.desc}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Facilities */}
       <section className="section facilities-section bg-light">
         <div className="container">
-          <div className="section-header text-center">
+          <Reveal className="section-header text-center">
             <h2 className="section-title">World‑Class Facilities</h2>
             <p className="section-subtitle">Spaces designed to inspire learning and discovery.</p>
-          </div>
-          <div className="grid grid-2">
+          </Reveal>
+          <Reveal className="grid grid-2" delay={100}>
             <div className="facility-card glass hover-lift">
               <h3 className="facility-title">Science Laboratories</h3>
               <p>Dedicated Physics, Chemistry, and Biology labs equipped for hands-on experiments in the Science stream.</p>
@@ -153,7 +145,7 @@ const Academics = () => {
               <h3 className="facility-title">Fully AC Classrooms</h3>
               <p>Every classroom is air-conditioned, keeping students comfortable and focused through the school day.</p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
       
@@ -162,8 +154,8 @@ const Academics = () => {
         <div className="container">
           <CalendarIcon size={48} className="mx-auto mb-4 opacity-75" />
           <h2 className="section-title text-white">Academic Calendar 2026-27</h2>
-          <p className="section-subtitle text-white mb-4" style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>Stay up to date with semester start dates, examination periods, and holidays.</p>
-          <button className="btn btn-outline" style={{ borderColor: 'white', color: 'white' }}>
+          <p className="section-subtitle text-white max-w-600 mx-auto mb-8">Stay up to date with semester start dates, examination periods, and holidays.</p>
+          <button className="btn btn-outline btn-outline-inverse">
             Download Full Calendar
           </button>
         </div>

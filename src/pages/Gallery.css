@@ -98,7 +98,7 @@
 .gallery-item-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(36, 26, 18, 0.9) 0%, rgba(36, 26, 18, 0.3) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(11, 21, 38, 0.9) 0%, rgba(11, 21, 38, 0.3) 60%, transparent 100%);
   /* Visible by default (touch devices can't hover, so captions must always be readable) */
   opacity: 1;
   display: flex;

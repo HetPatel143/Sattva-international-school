@@ -36,7 +36,7 @@ const Footer = () => {
           <h3 className="footer-heading">Contact Info</h3>
           <ul className="footer-contact-list">
             <li>
-              <MapPin size={18} className="contact-icon" aria-hidden="true" style={{ flexShrink: 0 }} />
+              <MapPin size={18} className="contact-icon" aria-hidden="true" />
               <span>Opposite Swapnil Homes, Near A.M. Patel Farm, Satyam Bunglow Char Rasta, Singarwa, Ahmedabad - 382430</span>
             </li>
             <li>

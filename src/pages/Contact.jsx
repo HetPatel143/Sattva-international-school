@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Send, Clock, Globe, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
+import PageHeader from '../components/PageHeader';
 import './Contact.css';
 
 const Contact = () => {
@@ -11,6 +12,21 @@ const Contact = () => {
   });
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({ name: '', email: '' });
+
+  const validateField = (id, value) => {
+    if (id === 'name') {
+      if (!value.trim()) return 'Please enter your full name.';
+      if (value.trim().length < 2) return 'Name looks too short.';
+      return '';
+    }
+    if (id === 'email') {
+      if (!value.trim()) return 'Please enter your email address.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address.';
+      return '';
+    }
+    return '';
+  };
 
   const subjectOptions = [
     { value: 'admissions', label: 'Admission & Enrollment Inquiry' },
@@ -24,10 +40,29 @@ const Contact = () => {
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
+    // Once a field has shown an error, clear it live as soon as the fix lands
+    if (fieldErrors[id]) {
+      setFieldErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { id, value } = e.target;
+    if (id === 'name' || id === 'email') {
+      setFieldErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const nameError = validateField('name', formData.name);
+    const emailError = validateField('email', formData.email);
+    if (nameError || emailError) {
+      setFieldErrors({ name: nameError, email: emailError });
+      return;
+    }
+
     setStatus('submitting');
     setErrorMessage('');
 
@@ -64,24 +99,14 @@ const Contact = () => {
 
   return (
     <div className="contact-page animate-fade-in">
-      {/* Header */}
-      <section className="page-header">
-        <div className="page-header-bg">
-          <img
-            src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=1920"
-            srcSet="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800 800w, https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=1920 1920w"
-            sizes="100vw"
-            alt="Contact Us"
-            fetchPriority="high"
-          />
-        </div>
-        <div className="page-header-content container text-center">
-          <h1 className="page-title page-title-emphasis">Contact Us</h1>
-          <p className="page-subtitle page-subtitle-italic mx-auto">
-            We look forward to welcoming you to our community.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        title="Contact Us"
+        subtitle="We look forward to welcoming you to our community."
+        image="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=1920"
+        alt="Contact Us"
+        emphasis
+        italicSubtitle
+      />
 
       {/* Main Contact Section (Premium Split Layout) */}
       <section className="section contact-section">
@@ -91,8 +116,8 @@ const Contact = () => {
             {/* Contact Info Side */}
             <div className="contact-info-side">
               <div className="info-header">
-                <h2 className="finance-heading" style={{ color: 'white' }}>Get In Touch</h2>
-                <p className="finance-subheading" style={{ color: 'rgba(255,255,255,0.8)' }}>
+                <h2 className="finance-heading">Get In Touch</h2>
+                <p className="finance-subheading">
                   Whether you are a prospective parent, an alumnus, or interested in learning more, our dedicated staff is here to assist you.
                 </p>
               </div>
@@ -142,7 +167,7 @@ const Contact = () => {
 
             {/* Contact Form Side */}
             <div className="contact-form-side">
-              <h2 className="form-title" style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>Send Us a Message</h2>
+              <h2 className="form-title form-title-compact">Send Us a Message</h2>
               <p className="form-subtitle">Fill out the form below and we will respond promptly.</p>
 
               {status === 'success' ? (
@@ -160,8 +185,7 @@ const Contact = () => {
                       setStatus('idle');
                       setFormData({ name: '', email: '', subject: '', message: '' });
                     }}
-                    className="btn btn-primary"
-                    style={{ marginTop: '2rem' }}
+                    className="btn btn-primary mt-8"
                   >
                     Send Another Message
                   </button>
@@ -169,28 +193,40 @@ const Contact = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="premium-form contact-form-grid">
                   <div className="form-row">
-                    <div className="input-group">
+                    <div className={`input-group${fieldErrors.name ? ' has-error' : ''}`}>
                       <input
                         type="text"
                         id="name"
                         value={formData.name}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         autoComplete="name"
+                        aria-invalid={Boolean(fieldErrors.name)}
+                        aria-describedby={fieldErrors.name ? 'name-error' : undefined}
                         required
                       />
                       <label htmlFor="name">Full Name</label>
+                      {fieldErrors.name && (
+                        <span id="name-error" className="field-error">{fieldErrors.name}</span>
+                      )}
                     </div>
-                    <div className="input-group">
+                    <div className={`input-group${fieldErrors.email ? ' has-error' : ''}`}>
                       <input
                         type="email"
                         id="email"
                         value={formData.email}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         autoComplete="email"
                         inputMode="email"
+                        aria-invalid={Boolean(fieldErrors.email)}
+                        aria-describedby={fieldErrors.email ? 'email-error' : undefined}
                         required
                       />
                       <label htmlFor="email">Email Address</label>
+                      {fieldErrors.email && (
+                        <span id="email-error" className="field-error">{fieldErrors.email}</span>
+                      )}
                     </div>
                   </div>
 
@@ -209,7 +245,7 @@ const Contact = () => {
                     <label htmlFor="subject">Subject of Inquiry</label>
                   </div>
 
-                  <div className="input-group full-width" style={{ marginTop: '2rem' }}>
+                  <div className="input-group full-width mt-8">
                     <textarea
                       id="message"
                       rows={4}
@@ -221,7 +257,7 @@ const Contact = () => {
                   </div>
 
                   {status === 'error' && (
-                    <div className="form-error-message" style={{ color: 'var(--color-accent)', margin: '0 0 1.5rem 0', fontWeight: '500', fontSize: '0.95rem' }}>
+                    <div className="form-error-message">
                       {errorMessage}
                     </div>
                   )}
@@ -232,7 +268,7 @@ const Contact = () => {
                         Sending... <span className="spinner"></span>
                       </span>
                     ) : (
-                      <>Send Message <Send size={18} style={{ marginLeft: '0.5rem' }} /></>
+                      <>Send Message <Send size={18} className="ml-2" /></>
                     )}
                   </button>
                 </form>
@@ -244,7 +280,7 @@ const Contact = () => {
       </section>
 
       {/* Elegant Map Section */}
-      <section className="section map-section" style={{ padding: 0 }}>
+      <section className="section map-section section-flush">
         <div className="premium-map-container">
           <div className="map-bg"></div>
           <div className="map-overlay">
@@ -258,7 +294,7 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="btn btn-primary map-btn"
               >
-                Open in Google Maps <ExternalLink size={18} style={{ marginLeft: '0.5rem' }} />
+                Open in Google Maps <ExternalLink size={18} className="ml-2" />
               </a>
             </div>
           </div>
