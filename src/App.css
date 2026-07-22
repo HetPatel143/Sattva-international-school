@@ -4,13 +4,6 @@
   min-height: 100vh;
 }
 
-/* Reserve space so the fixed MobileCTA bar never covers the footer's tail end */
-@media (max-width: 767px) {
-  .app-container {
-    padding-bottom: calc(60px + env(safe-area-inset-bottom));
-  }
-}
-
 .main-content {
   flex: 1;
 }

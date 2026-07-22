@@ -103,10 +103,12 @@ const Home = () => {
         <div className="container">
           <Reveal className="grid grid-2 grid-4-lg stats-grid">
             {stats.map((stat, idx) => (
-              <div key={idx} className="stat-card text-center">
-                <div className="stat-icon mx-auto">{stat.icon}</div>
-                <div className="stat-value text-gradient">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
+              <div key={idx} className="stat-card">
+                <div className="stat-icon">{stat.icon}</div>
+                <div className="stat-text">
+                  <div className="stat-value text-gradient">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
               </div>
             ))}
           </Reveal>
@@ -127,8 +129,10 @@ const Home = () => {
                 <div className={`feature-icon-wrapper tile-${feature.tile}`}>
                   {feature.icon}
                 </div>
-                <h3 className="feature-card-title">{feature.title}</h3>
-                <p className="feature-card-desc">{feature.description}</p>
+                <div className="feature-text">
+                  <h3 className="feature-card-title">{feature.title}</h3>
+                  <p className="feature-card-desc">{feature.description}</p>
+                </div>
               </div>
             ))}
           </Reveal>
@@ -148,8 +152,10 @@ const Home = () => {
                 <div className={`curriculum-tile-icon tile-${item.tile}`}>
                   {item.icon}
                 </div>
-                <h3 className="curriculum-tile-title">{item.title}</h3>
-                <p className="curriculum-tile-desc">{item.desc}</p>
+                <div className="curriculum-tile-text">
+                  <h3 className="curriculum-tile-title">{item.title}</h3>
+                  <p className="curriculum-tile-desc">{item.desc}</p>
+                </div>
               </div>
             ))}
           </Reveal>
