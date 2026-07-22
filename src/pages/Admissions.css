@@ -278,19 +278,17 @@
 }
 
 .premium-faq-answer-wrapper {
-  display: grid;
-  grid-template-rows: 0fr;
+  max-height: 0;
   overflow: hidden;
-  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .premium-faq-answer-wrapper.open {
-  grid-template-rows: 1fr;
-}
-
-.premium-faq-answer-wrapper > .premium-faq-answer {
-  overflow: hidden;
-  min-height: 0;
+  /* Generous ceiling rather than exact content height — animating to a
+     fixed-but-roomy max-height avoids the cross-browser fragility of
+     animating grid-template-rows 0fr->1fr with wrapping text, which was
+     settling short and clipping longer answers. */
+  max-height: 400px;
 }
 
 .premium-faq-answer {
