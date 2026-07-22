@@ -60,7 +60,7 @@
   }
 
   .timeline-step {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .timeline-number {
@@ -73,6 +73,12 @@
 
   .timeline-title {
     font-size: 1.25rem;
+    margin-top: 0.15rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .steps-section .timeline-container.mt-16 {
+    margin-top: 1.75rem;
   }
 }
 
@@ -96,14 +102,14 @@
 .tuition-side {
   flex: 1.2;
   background-color: white;
-  padding: 2.5rem 1.5rem;
+  padding: 1.5rem 1.25rem;
 }
 
 .aid-side {
   flex: 1;
   background-color: var(--color-primary);
   color: white;
-  padding: 2.5rem 1.5rem;
+  padding: 1.5rem 1.25rem;
 }
 
 @media (min-width: 768px) {
@@ -115,8 +121,15 @@
 
 .finance-heading {
   font-family: var(--font-heading);
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+@media (min-width: 768px) {
+  .finance-heading {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .aid-heading {
@@ -125,8 +138,15 @@
 
 .finance-subheading {
   color: var(--color-text-muted);
-  margin-bottom: 2.5rem;
-  font-size: 1.125rem;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .finance-subheading {
+    margin-bottom: 2.5rem;
+    font-size: 1.125rem;
+  }
 }
 
 .tuition-table-premium {
@@ -140,8 +160,14 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 0.35rem 1rem;
-  padding: 1.25rem 0;
+  padding: 0.85rem 0;
   border-bottom: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .tuition-row {
+    padding: 1.25rem 0;
+  }
 }
 
 .tuition-row:last-child {
@@ -149,45 +175,92 @@
 }
 
 .grade-level {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--color-primary);
 }
 
+@media (min-width: 768px) {
+  .grade-level {
+    font-size: 1.125rem;
+  }
+}
+
 .grade-detail {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--color-text-muted);
   font-weight: normal;
   margin-left: 0.5rem;
 }
 
+@media (min-width: 768px) {
+  .grade-detail {
+    font-size: 0.875rem;
+  }
+}
+
 .fee-amount {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
+@media (min-width: 768px) {
+  .fee-amount {
+    font-size: 1.25rem;
+  }
+}
+
 .fee-disclaimer {
-  margin-top: 2rem;
-  font-size: 0.875rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
   color: var(--color-text-muted);
   font-style: italic;
 }
 
+@media (min-width: 768px) {
+  .fee-disclaimer {
+    margin-top: 2rem;
+    font-size: 0.875rem;
+  }
+}
+
 .aid-desc {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.25rem;
   opacity: 0.9;
-  line-height: 1.7;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .aid-desc {
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
 }
 
 .aid-item {
-  margin-bottom: 2rem;
+  margin-bottom: 1.1rem;
+}
+
+@media (min-width: 768px) {
+  .aid-item {
+    margin-bottom: 2rem;
+  }
 }
 
 .aid-title {
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
   color: white;
+}
+
+@media (min-width: 768px) {
+  .aid-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .aid-text {

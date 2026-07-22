@@ -71,8 +71,10 @@ const Academics = () => {
                 <div className="program-icon-wrapper">
                   {p.icon}
                 </div>
-                <h3 className="program-title">{p.title}</h3>
-                <p className="program-desc">{p.desc}</p>
+                <div className="program-text">
+                  <h3 className="program-title">{p.title}</h3>
+                  <p className="program-desc">{p.desc}</p>
+                </div>
               </div>
             ))}
           </Reveal>
@@ -111,10 +113,12 @@ const Academics = () => {
           </Reveal>
           <Reveal className="grid grid-3" delay={100}>
             {supportServices.map((service, idx) => (
-              <div key={idx} className="support-card glass text-center hover-lift">
-                <div className="support-icon mx-auto text-primary mb-4">{service.icon}</div>
-                <h3 className="support-title">{service.title}</h3>
-                <p className="support-desc">{service.desc}</p>
+              <div key={idx} className="support-card glass hover-lift">
+                <div className="support-icon text-primary">{service.icon}</div>
+                <div className="support-text">
+                  <h3 className="support-title">{service.title}</h3>
+                  <p className="support-desc">{service.desc}</p>
+                </div>
               </div>
             ))}
           </Reveal>

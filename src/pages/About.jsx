@@ -80,12 +80,14 @@ const About = () => {
 
           <Reveal className="grid grid-2 grid-4-lg values-grid" delay={100}>
             {values.map((val, idx) => (
-              <div key={idx} className="value-card text-center glass hover-lift">
-                <div className={`value-icon-wrapper mx-auto tile-${val.tile}`}>
+              <div key={idx} className="value-card glass hover-lift">
+                <div className={`value-icon-wrapper tile-${val.tile}`}>
                   {val.icon}
                 </div>
-                <h3 className="value-title">{val.title}</h3>
-                <p className="value-desc">{val.desc}</p>
+                <div className="value-text">
+                  <h3 className="value-title">{val.title}</h3>
+                  <p className="value-desc">{val.desc}</p>
+                </div>
               </div>
             ))}
           </Reveal>
@@ -101,12 +103,14 @@ const About = () => {
           </Reveal>
           <Reveal className="grid grid-2 grid-3-lg" delay={100}>
             {lifeAtSattva.map((item, idx) => (
-              <div key={idx} className="value-card text-center glass hover-lift">
-                <div className={`value-icon-wrapper mx-auto tile-${item.tile}`}>
+              <div key={idx} className="value-card glass hover-lift">
+                <div className={`value-icon-wrapper tile-${item.tile}`}>
                   {item.icon}
                 </div>
-                <h3 className="value-title">{item.title}</h3>
-                <p className="value-desc">{item.desc}</p>
+                <div className="value-text">
+                  <h3 className="value-title">{item.title}</h3>
+                  <p className="value-desc">{item.desc}</p>
+                </div>
               </div>
             ))}
           </Reveal>

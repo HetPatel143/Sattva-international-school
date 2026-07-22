@@ -20,7 +20,7 @@
   flex: 1;
   background-color: var(--color-primary);
   color: white;
-  padding: 2.5rem 1.5rem;
+  padding: 1.5rem 1.25rem;
 }
 
 @media (min-width: 768px) {
@@ -38,21 +38,34 @@
 }
 
 .info-blocks {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .info-blocks {
+    margin-top: 3rem;
+    gap: 2.5rem;
+  }
 }
 
 .info-block {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .info-block {
+    gap: 1.5rem;
+  }
 }
 
 .info-icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -61,6 +74,13 @@
   justify-content: center;
   color: var(--color-secondary);
   flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .info-icon {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 .info-content h3 {
@@ -81,7 +101,7 @@
 .contact-form-side {
   flex: 1.2; /* Balanced proportions, reduced from 1.5 */
   background-color: white;
-  padding: 2.5rem 1.5rem;
+  padding: 1.5rem 1.25rem;
 }
 
 @media (min-width: 768px) {
@@ -91,7 +111,13 @@
 }
 
 .contact-form-grid {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .contact-form-grid {
+    margin-top: 3rem;
+  }
 }
 
 /* Keeps the heading fixed rather than the shared form-title's responsive clamp —
