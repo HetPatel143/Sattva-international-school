@@ -1,55 +1,63 @@
+/* Mobile: the photo shown whole (image's own 16:9 ratio, no crop), text
+   in a solid block below. Desktop: the classic full-bleed photo with
+   text overlaid on top, restored in the media query further down. */
 .hero {
   position: relative;
-  min-height: 520px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .hero {
-    min-height: 100vh;
-  }
-}
-
 .hero-image {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  object-position: 22% center;
-  z-index: -2;
-}
-
-@media (min-width: 768px) {
-  .hero-image {
-    object-position: center center;
-  }
 }
 
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(11, 21, 38, 0.4); /* Navy overlay */
-  z-index: -1;
+  display: none;
 }
 
 .hero-content {
   color: white;
   width: 100%;
-  padding: 2.5rem 1.5rem;
-  z-index: 1;
+  padding: 2rem 1.5rem 2.5rem;
+  background-color: var(--color-primary);
 }
 
 @media (min-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center center;
+    z-index: -2;
+  }
+
+  .hero-overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 21, 38, 0.4); /* Navy overlay */
+    z-index: -1;
+  }
+
   .hero-content {
+    background-color: transparent;
     padding: 4rem 1.5rem;
   }
 }
@@ -450,43 +458,67 @@
   color: var(--color-text-muted);
 }
 
-/* CTA Section */
+/* CTA Section — mobile: whole photo (16:9, no crop) above a solid-colour
+   text block; desktop: classic full-bleed photo with overlaid text. */
 .cta-box {
-  padding: 3rem 1.5rem;
+  padding: 0;
   border-radius: var(--radius-xl);
-  min-height: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+.cta-bg-image {
+  display: block;
+  position: static;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.cta-overlay {
+  display: none;
 }
 
 @media (min-width: 768px) {
   .cta-box {
     padding: 5rem 2rem;
     min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
 
-.cta-bg-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
-  z-index: -2;
-}
+  .cta-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center 35%;
+    z-index: -2;
+  }
 
-.cta-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(20, 14, 10, 0.32) 0%, rgba(20, 14, 10, 0.48) 100%);
-  z-index: -1;
+  .cta-overlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 14, 10, 0.32) 0%, rgba(20, 14, 10, 0.48) 100%);
+    z-index: -1;
+  }
 }
 
 .cta-content {
   max-width: 700px;
   margin: 0 auto;
+  padding: 2rem 1.5rem 2.5rem;
+  background-color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .cta-content {
+    background-color: transparent;
+    padding: 0;
+  }
 }
 
 .cta-content .cta-title,

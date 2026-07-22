@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Users, Trophy, Star, Quote, GraduationCap, Building, Award, FlaskConical, Languages, Palette, Landmark, ChevronLeft, ChevronRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
@@ -70,6 +70,21 @@ const Home = () => {
 
   const showTestimonial = (direction) => {
     setActiveTestimonial((current) => (current + direction + testimonials.length) % testimonials.length);
+  };
+
+  const touchStartXRef = useRef(null);
+
+  const handleTestimonialTouchStart = (e) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTestimonialTouchEnd = (e) => {
+    if (touchStartXRef.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const SWIPE_THRESHOLD = 50;
+    if (deltaX > SWIPE_THRESHOLD) showTestimonial(-1);
+    else if (deltaX < -SWIPE_THRESHOLD) showTestimonial(1);
+    touchStartXRef.current = null;
   };
 
   return (
@@ -180,7 +195,12 @@ const Home = () => {
             <p className="section-subtitle">Hear what our parents and alumni have to say about their experience.</p>
           </Reveal>
 
-          <Reveal className="testimonial-carousel" delay={100}>
+          <Reveal
+            className="testimonial-carousel"
+            delay={100}
+            onTouchStart={handleTestimonialTouchStart}
+            onTouchEnd={handleTestimonialTouchEnd}
+          >
             <button
               type="button"
               className="testimonial-nav testimonial-prev"
