@@ -85,7 +85,7 @@ const Home = () => {
         />
         <div className="container hero-content text-center">
           <h1 className="hero-title animate-fade-in delay-100">
-            SATTVA INTERNATIONAL SCHOOL
+            SATTVA International School
           </h1>
           <p className="hero-subtitle mx-auto animate-fade-in delay-200">
             Excellence. Heritage. Character.
