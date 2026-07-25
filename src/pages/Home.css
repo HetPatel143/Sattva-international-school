@@ -528,7 +528,7 @@
 }
 
 .cta-content .btn-primary {
-  background-color: #22C55E;
+  background-color: #47A54B;
   color: white;
   width: 100%;
 }
@@ -541,7 +541,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .cta-content .btn-primary:hover {
-    background-color: #16A34A;
+    background-color: #39833C;
     color: white;
   }
 }
